@@ -1,0 +1,6 @@
+/.apikey
+/.config
+/.claude
+/.venv
+CLAUDE.md
+__pycache__

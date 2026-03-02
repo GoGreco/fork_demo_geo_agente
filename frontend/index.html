@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agente Geo IBGE</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/ol@10.5.0/ol.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+      <div id="chat-container">
+        <div id="chat-header">Agente Geo IBGE</div>
+        <div id="chat-messages"></div>
+        <div id="chat-input-area">
+          <input
+            type="text"
+            id="chat-input"
+            placeholder="Pergunte sobre camadas do IBGE..."
+            autocomplete="off"
+          />
+          <button id="chat-send">Enviar</button>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/ol@10.5.0/dist/ol.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

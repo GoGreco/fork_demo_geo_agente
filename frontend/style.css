@@ -1,0 +1,139 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+}
+
+#app {
+  display: flex;
+  height: 100%;
+}
+
+#map-container {
+  flex: 7;
+  position: relative;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
+}
+
+#chat-container {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  background: #16213e;
+  border-left: 1px solid #0f3460;
+}
+
+#chat-header {
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  background: #0f3460;
+  text-align: center;
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.message {
+  padding: 10px 14px;
+  border-radius: 12px;
+  max-width: 90%;
+  line-height: 1.5;
+  font-size: 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.message.user {
+  background: #0f3460;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.message.assistant {
+  background: #1a1a2e;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #0f3460;
+}
+
+.message.loading {
+  opacity: 0.6;
+  font-style: italic;
+}
+
+#chat-input-area {
+  display: flex;
+  padding: 12px;
+  gap: 8px;
+  background: #0f3460;
+}
+
+#chat-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  font-size: 14px;
+  outline: none;
+}
+
+#chat-input::placeholder {
+  color: #666;
+}
+
+#chat-send {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #e94560;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+#chat-send:hover {
+  background: #c73e54;
+}
+
+#chat-send:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  #app {
+    flex-direction: column;
+  }
+  #map-container {
+    flex: 1;
+    min-height: 50vh;
+  }
+  #chat-container {
+    flex: 1;
+    border-left: none;
+    border-top: 1px solid #0f3460;
+  }
+}
