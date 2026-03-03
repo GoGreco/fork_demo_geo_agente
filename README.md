@@ -77,6 +77,22 @@ O usuário digita: **"Mostre os municípios do Brasil"**
 - O histórico de conversa é mantido **em memória por sessão** (`session_id`), preservando contexto entre mensagens.
 - As ferramentas `search_layers`, `list_layers` e `get_layer_info` são puramente informativas (não geram ações no mapa). Já `add_layer`, `remove_layer` e `zoom_to_layer` acumulam ações que serão executadas pelo frontend.
 
+## Indexação e busca de camadas
+
+Na inicialização do servidor, o backend faz download do XML de capabilities do serviço WMS do IBGE (`GetCapabilities`) e extrai nome, título, resumo e bounding box de cada camada. Essas ~9000 camadas são então indexadas em um banco SQLite em memória através de duas estruturas:
+
+**Full-Text Search (FTS5)**
+
+Uma tabela virtual FTS5 indexa os campos `name`, `title` e `abstract` de cada camada. O tokenizer `unicode61` é configurado com `remove_diacritics 2`, o que permite encontrar resultados independente de acentuação (ex: "municipio" encontra "Município"). Cada termo da busca é tratado como prefixo (`"termo"*`), e múltiplos termos são combinados com `AND`. Os resultados são ranqueados pelo algoritmo BM25, que prioriza as camadas mais relevantes.
+
+**Fuzzy matching (rapidfuzz)**
+
+Quando a busca FTS5 retorna poucos resultados (menos de 5), o sistema complementa com uma busca fuzzy usando a biblioteca `rapidfuzz`. Ela compara a query contra todas as camadas usando o scorer `WRatio` (que combina diferentes estratégias de similaridade de strings) e retorna matches com score acima de 60%. Isso permite encontrar camadas mesmo com erros de digitação ou variações de nomenclatura.
+
+**Estratégia de busca combinada**
+
+A função `search_layers` combina as duas abordagens: primeiro executa a busca FTS5 (rápida e precisa). Se os resultados forem suficientes (≥ 5), retorna apenas eles. Caso contrário, complementa com os resultados fuzzy, removendo duplicatas, e retorna até 50 camadas.
+
 ## Pré-requisitos
 
 - Python 3.11+

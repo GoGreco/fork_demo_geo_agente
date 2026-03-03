@@ -38,7 +38,7 @@ body {
 
 #chat-header {
   padding: 16px;
-  font-size: 18px;
+  font-size: 28px;
   font-weight: 600;
   background: #0f3460;
   text-align: center;
@@ -58,7 +58,7 @@ body {
   border-radius: 12px;
   max-width: 90%;
   line-height: 1.5;
-  font-size: 14px;
+  font-size: 22px;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -95,7 +95,7 @@ body {
   border-radius: 8px;
   background: #1a1a2e;
   color: #e0e0e0;
-  font-size: 14px;
+  font-size: 22px;
   outline: none;
 }
 
@@ -109,7 +109,7 @@ body {
   border-radius: 8px;
   background: #e94560;
   color: white;
-  font-size: 14px;
+  font-size: 22px;
   font-weight: 600;
   cursor: pointer;
 }

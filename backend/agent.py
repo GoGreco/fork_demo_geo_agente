@@ -1,9 +1,13 @@
 import configparser
 import json
+import logging
 import os
+import time
 import uuid
 from openai import AsyncOpenAI
 from wms import get_all_layers, search_layers, get_layer_info
+
+logger = logging.getLogger("agent")
 
 _config_path = os.path.join(os.path.dirname(__file__), "..", ".config")
 _config = configparser.ConfigParser()
@@ -230,18 +234,32 @@ async def chat(
     history.append({"role": "user", "content": user_message})
 
     actions = []
+    t_chat_start = time.perf_counter()
 
-    for _ in range(MAX_TOOL_ITERATIONS):
+    for iteration in range(MAX_TOOL_ITERATIONS):
+        t0 = time.perf_counter()
         response = await client.chat.completions.create(
             model=MODEL,
             messages=history,
             tools=TOOLS,
         )
+        t_llm = time.perf_counter() - t0
 
         message = response.choices[0].message
         history.append(message)
+        usage = getattr(response, "usage", None)
+        usage_str = (
+            f" tokens(prompt={usage.prompt_tokens}, completion={usage.completion_tokens})"
+            if usage
+            else ""
+        )
+        logger.warning(
+            f"[iter {iteration}] LLM call: {t_llm:.2f}s{usage_str} | msg_count={len(history)}"
+        )
 
         if not message.tool_calls:
+            total = time.perf_counter() - t_chat_start
+            logger.warning(f"[DONE] total={total:.2f}s iterations={iteration + 1}")
             return message.content or "", actions
 
         for tool_call in message.tool_calls:
@@ -251,7 +269,13 @@ async def chat(
             except json.JSONDecodeError:
                 fn_args = {}
 
+            t_tool = time.perf_counter()
             result_text, action = _execute_tool(fn_name, fn_args)
+            t_tool = time.perf_counter() - t_tool
+            logger.warning(
+                f"[iter {iteration}] tool {fn_name}({fn_args}): {t_tool:.4f}s"
+            )
+
             if action:
                 actions.append(action)
 
@@ -263,4 +287,6 @@ async def chat(
                 }
             )
 
+    total = time.perf_counter() - t_chat_start
+    logger.warning(f"[MAX_ITER] total={total:.2f}s")
     return "Desculpe, não consegui processar sua solicitação.", actions
