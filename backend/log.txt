@@ -1,0 +1,9 @@
+INFO:     Will watch for changes in these directories: ['/mnt/sdb1/repos/fork_demo_geo_agente/backend']
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [56693] using WatchFiles
+INFO:     Started server process [56696]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WMS: loaded 9554 layers
+INFO:     127.0.0.1:43808 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:43808 - "GET /app.js HTTP/1.1" 200 OK

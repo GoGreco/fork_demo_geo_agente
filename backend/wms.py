@@ -5,7 +5,10 @@ import httpx
 import xml.etree.ElementTree as ET
 from rapidfuzz import fuzz, process
 
+#WMS_URL = "http://localhost:8180/geoserver/wms"
 WMS_URL = "https://geoservicos.ibge.gov.br/geoserver/wms"
+#TENTATIVA FILTRO
+WFS_URL = "http://localhost:8180/geoserver/wfs"
 CAPABILITIES_URL = f"{WMS_URL}?service=WMS&request=GetCapabilities"
 NS = {"wms": "http://www.opengis.net/wms"}
 
@@ -165,3 +168,29 @@ def get_layer_info(name: str) -> dict | None:
         "abstract": row[2],
         "bbox": json.loads(row[3]) if row[3] else None,
     }
+
+#WFS TESTE
+def get_layer_columns(layer_name: str) -> list[str]:
+    url = f"{WFS_URL}?service=WFS&version=1.0.0&request=DescribeFeatureType&typeName={layer_name}"
+
+    try:
+        with httpx.Client(timeout=10) as client:
+            resp = client.get(url)
+            resp.raise_for_status()
+
+        root = ET.fromstring(resp.text)
+
+        columns =[]
+
+        ns = {"xsd": "http://www.w3.org/2001/XMLSchema"}
+
+        for el in root.findall(".//xsd:element", namespaces=ns):
+            col_name = el.attrib.get("name")
+            col_type = el.attrib.get("type", "")
+
+            if col_name and not col_type.startswith("gml:"):
+                columns.append(col_name)
+        return columns
+    except Exception as e:
+        print(f"Erro ao buscar colunas da camada {layer_name}: {e}")
+        return []

@@ -49,8 +49,7 @@ async def api_create_session():
 @app.post("/api/chat")
 async def api_chat(req: ChatRequest) -> ChatResponse:
     try:
-        layers = [
-            {"name": layers.name, "title": layers.title} for layers in req.active_layers
+        layers = [{"name": layers.name, "title": layers.title} for layers in req.active_layers
         ]
         reply, actions = await chat(req.session_id, req.message, layers)
     except KeyError:

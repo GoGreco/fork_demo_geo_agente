@@ -5,7 +5,7 @@ import os
 import time
 import uuid
 from openai import AsyncOpenAI
-from wms import get_all_layers, search_layers, get_layer_info
+from wms import get_all_layers, search_layers, get_layer_info, get_layer_columns
 
 logger = logging.getLogger("agent")
 
@@ -14,8 +14,8 @@ _config = configparser.ConfigParser()
 _config.read(_config_path)
 
 API_KEY = _config.get("llm", "api_key", fallback="")
-BASE_URL = _config.get("llm", "base_url", fallback="https://openrouter.ai/api/v1")
-MODEL = _config.get("llm", "model", fallback="qwen/qwen3-8b")
+BASE_URL = _config.get("llm", "base_url", fallback="http://10.61.85.149:4000/v1/")
+MODEL = _config.get("llm", "model", fallback="qwen/qwen3.5-9b")
 
 client = AsyncOpenAI(
     base_url=BASE_URL,
@@ -23,16 +23,18 @@ client = AsyncOpenAI(
 )
 
 SYSTEM_PROMPT = """Você é um assistente de geoprocessamento que ajuda usuários a explorar dados geográficos do IBGE.
-Você tem acesso a ferramentas para listar, buscar e manipular camadas WMS no mapa.
+Você tem acesso a ferramentas para listar, buscar, manipular e filtrar camadas WMS no mapa.
 
 IMPORTANTE - Seu fluxo de trabalho:
 - Quando o usuário pedir para adicionar/mostrar/exibir uma camada, SEMPRE use search_layers primeiro para encontrar o nome técnico, depois use add_layer com o resultado mais relevante.
-- Quando houver múltiplos resultados de busca, escolha o mais relevante e adicione-o. Se realmente houver ambiguidade, apresente no máximo 5 opções.
+- Quando adicionar uma layer SEMPRE utilize a ferramenta get_layer_columns.
+- Quando houver múltiplos resultados de busca, escolha o mais recente e relevante e adicione-o. Se realmente houver ambiguidade, apresente no máximo 5 opções.
 - Quando o usuário pedir para listar camadas, use list_layers.
 - Quando o usuário pedir para remover uma camada, use remove_layer.
 - Use as ferramentas proativamente. NÃO peça informações que você pode descobrir usando as ferramentas.
 - Responda sempre em português. Seja conciso e útil.
-- Quando o usuário mencionar "estados", busque por "estado" ou "UF". Quando mencionar "municípios", busque por "municipio". Use termos simples nas buscas."""
+- Quando o usuário mencionar "estados", busque por "estado" ou "UF". Quando mencionar "municípios", busque por "municipio". Use termos simples nas buscas.
+- Quando o usuário pedir para filtrar uma camada SEMPRE use a ferramenta get_layers_columns primeiro para descobrir os nomes das colunas. Depois, use a ferramenta aplly_cql_filter com o nome da coluna correto."""
 
 TOOLS = [
     {
@@ -129,6 +131,44 @@ TOOLS = [
             },
         },
     },
+    {
+        "type": "function",
+        "function": {
+            "name": "get_layer_columns",
+            "description": "obtém os nomes exatos das colunas/atributos da tabela de uma camada. IMPORTANTE usar antes de criar um filtro CQL para não errar o nome da coluna.",
+            "parameters": {
+                "type": "object",
+                "properties":{
+                    "name":{
+                        "type": "string",
+                        "description": "Nome técnico da camada WMS/WFS",
+                    },
+                },
+                "required":["name"],
+            },       
+        },
+    },
+    {
+        "type": "function",
+        "function": {
+            "name": "apply_cql_filter",
+            "description": "Aplica um filtro CQL a uma camada WMS no mapa.",
+            "parameters": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Nome técnico da camada WMS",
+                    },
+                    "filter": {
+                        "type": "string",
+                        "description": "Expressão CQL. Ex: NM_UF = 'São Paulo'",
+                    },
+                },
+                "required": ["name", "filter"],
+            },
+        },
+    },
 ]
 
 # In-memory session store
@@ -159,7 +199,12 @@ def _tool_list_layers(_args: dict) -> tuple[str, dict | None]:
 
 def _tool_search_layers(args: dict) -> tuple[str, dict | None]:
     results = search_layers(args.get("query", ""))
-    return json.dumps(results, ensure_ascii=False), None
+    top_results = results[:10]
+    resultados_limpos =[
+        {"name": r.get("name"), "title": r.get("title")}
+        for r in top_results
+    ]
+    return json.dumps(resultados_limpos, ensure_ascii=False), None
 
 
 def _tool_get_layer_info(args: dict) -> tuple[str, dict | None]:
@@ -198,6 +243,24 @@ def _tool_zoom_to_layer(args: dict) -> tuple[str, dict | None]:
         ), action
     return json.dumps({"error": "Camada não encontrada ou sem bbox"}), None
 
+#tentativa fitro CQL
+def _tool_get_layer_columns(args: dict) -> tuple[str, dict | None]:
+    layer_name = args.get("name", "")
+    columns = get_layer_columns(layer_name)
+
+    if columns:
+        return json.dumps({"colunas_disponíveis": columns}, ensure_ascii=False), None
+    return json.dumps({"error": "Não foi possível carregar as colunas"}), None
+
+def _tool_apply_cql_filter(args: dict) -> tuple[str, dict | None]:
+    layer_name = args.get("name", "")
+    cql_filter = args.get("filter", "")
+
+    action = {"type": "apply_filter", "name": layer_name, "filter": cql_filter}
+
+    return json.dumps({"status": "ok", "message": f"Filtro CQL '{cql_filter}' aplicado."}), action
+
+
 
 _TOOL_DISPATCH = {
     "list_layers": _tool_list_layers,
@@ -206,6 +269,8 @@ _TOOL_DISPATCH = {
     "add_layer": _tool_add_layer,
     "remove_layer": _tool_remove_layer,
     "zoom_to_layer": _tool_zoom_to_layer,
+    "get_layer_columns": _tool_get_layer_columns,
+    "apply_cql_filter": _tool_apply_cql_filter,
 }
 
 
@@ -228,14 +293,17 @@ async def chat(
 ) -> tuple[str, list[dict]]:
     """Process a chat message. Returns (reply_text, actions_list)."""
     history = _get_history(session_id)
-    history.append(
-        {"role": "system", "content": _build_context_message(active_layers or [])}
-    )
-    history.append({"role": "user", "content": user_message})
+    
+    mensagem_de_contexto = {"role": "system", "content": _build_context_message(active_layers or [])}
+    mensagem_do_usuario ={"role": "user", "content": user_message}
+
+    messages_for_llm = history +[mensagem_de_contexto, mensagem_do_usuario]
+
+    history.append(mensagem_do_usuario)
 
     actions = []
     t_chat_start = time.perf_counter()
-
+    
     for iteration in range(MAX_TOOL_ITERATIONS):
         t0 = time.perf_counter()
         response = await client.chat.completions.create(
