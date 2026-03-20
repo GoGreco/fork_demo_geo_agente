@@ -34,7 +34,7 @@ IMPORTANTE - Seu fluxo de trabalho:
 - Use as ferramentas proativamente. NÃO peça informações que você pode descobrir usando as ferramentas.
 - Responda sempre em português. Seja conciso e útil.
 - Quando o usuário mencionar "estados", busque por "estado" ou "UF". Quando mencionar "municípios", busque por "municipio". Use termos simples nas buscas.
-- Quando o usuário pedir para filtrar uma camada SEMPRE use a ferramenta get_layers_columns primeiro para descobrir os nomes das colunas. Depois, use a ferramenta aplly_cql_filter com o nome da coluna correto."""
+- Quando o usuário pedir para filtrar uma camada SEMPRE use a ferramenta get_layer_columns primeiro para descobrir os nomes das colunas. Depois, use a ferramenta apply_cql_filter com o nome da coluna correto."""
 
 TOOLS = [
     {
@@ -256,9 +256,9 @@ def _tool_apply_cql_filter(args: dict) -> tuple[str, dict | None]:
     layer_name = args.get("name", "")
     cql_filter = args.get("filter", "")
 
-    action = {"type": "apply_filter", "name": layer_name, "filter": cql_filter}
+    action = {"type": "apply_cql_filter", "name": layer_name, "filter": cql_filter}
 
-    return json.dumps({"status": "ok", "message": f"Filtro CQL '{cql_filter}' aplicado."}), action
+    return json.dumps({"status": "ok", "message": "Filtro CQL aplicado."}), action
 
 
 
@@ -280,13 +280,18 @@ def _execute_tool(name: str, args: dict) -> tuple[str, dict | None]:
         return handler(args)
     return json.dumps({"error": f"Tool desconhecida: {name}"}), None
 
-
 def _build_context_message(active_layers: list[dict]) -> str:
     if not active_layers:
         return "Estado atual do mapa: nenhuma camada ativa."
-    names = ", ".join(f"{layer['title']} ({layer['name']})" for layer in active_layers)
-    return f"Estado atual do mapa — camadas ativas: {names}"
-
+    
+    details = []
+    for layer in active_layers:
+        status = f"{layer['title']} ({layer['name']})"
+        if layer.get('filter'):
+            status += f" [Filtro Ativo: {layer['filter']}]"
+        details.append(status)
+    
+    return "Estado atual do mapa — camadas ativas: " + ", ".join(details)
 
 async def chat(
     session_id: str, user_message: str, active_layers: list[dict] | None = None
@@ -294,21 +299,21 @@ async def chat(
     """Process a chat message. Returns (reply_text, actions_list)."""
     history = _get_history(session_id)
     
-    mensagem_de_contexto = {"role": "system", "content": _build_context_message(active_layers or [])}
-    mensagem_do_usuario ={"role": "user", "content": user_message}
+    contexto_mapa = _build_context_message(active_layers or [])
 
-    messages_for_llm = history +[mensagem_de_contexto, mensagem_do_usuario]
+    full_user_content = f"CONTEXTO ATUAL DO MAPA: {contexto_mapa}\n\nPERGUNTA: {user_message}"
+
+    mensagem_do_usuario = {"role": "user", "content": full_user_content}
 
     history.append(mensagem_do_usuario)
-
     actions = []
     t_chat_start = time.perf_counter()
-    
+
     for iteration in range(MAX_TOOL_ITERATIONS):
         t0 = time.perf_counter()
         response = await client.chat.completions.create(
             model=MODEL,
-            messages=history,
+            messages=history, 
             tools=TOOLS,
         )
         t_llm = time.perf_counter() - t0

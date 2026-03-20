@@ -4,3 +4,4 @@
 /.venv
 CLAUDE.md
 __pycache__
+./backend/log.txt

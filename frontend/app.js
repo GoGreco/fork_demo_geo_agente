@@ -54,6 +54,21 @@ function zoomToExtent(bbox) {
   map.getView().fit(extent, { duration: 500, padding: [50, 50, 50, 50] });
 }
 
+function applyLayerFilter(name, cqlFilter) {
+  const layer = wmsLayers[name];
+  if (layer) {
+    const source = layer.getSource();
+    layer.set('current_filter', cqlFilter || null); 
+
+    source.updateParams({ 
+      'CQL_FILTER': cqlFilter || undefined 
+    });
+    
+    console.log(`Filtro CQL em ${name}: ${cqlFilter || 'REMOVIDO'}`);
+    renderLayerList();
+  }
+}
+
 // --- GetFeatureInfo popup ---
 const popupEl = document.getElementById("popup");
 const popupContent = document.getElementById("popup-content");
@@ -148,6 +163,9 @@ function processActions(actions) {
       case "zoom_to_layer":
         if (action.bbox) zoomToExtent(action.bbox);
         break;
+      case "apply_cql_filter":
+        applyLayerFilter(action.name, action.filter);
+        break;
     }
   }
 }
@@ -199,6 +217,7 @@ async function sendMessage() {
         active_layers: Object.entries(wmsLayers).map(([name, layer]) => ({
           name,
           title: layer.get("title") || name,
+          filter: layer.get("current_filter") || null
         })),
       }),
     });

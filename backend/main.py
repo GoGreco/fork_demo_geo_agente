@@ -28,7 +28,7 @@ app.add_middleware(
 class ActiveLayer(BaseModel):
     name: str
     title: str
-
+    filter: str | None = None
 
 class ChatRequest(BaseModel):
     session_id: str

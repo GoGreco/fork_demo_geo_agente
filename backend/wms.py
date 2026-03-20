@@ -8,13 +8,14 @@ from rapidfuzz import fuzz, process
 #WMS_URL = "http://localhost:8180/geoserver/wms"
 WMS_URL = "https://geoservicos.ibge.gov.br/geoserver/wms"
 #TENTATIVA FILTRO
-WFS_URL = "http://localhost:8180/geoserver/wfs"
+WFS_URL = "https://geoservicos.ibge.gov.br/geoserver/wfs"
 CAPABILITIES_URL = f"{WMS_URL}?service=WMS&request=GetCapabilities"
 NS = {"wms": "http://www.opengis.net/wms"}
 
 _db: sqlite3.Connection | None = None
 _layers_cache: list[dict] = []
 
+active_layer_filters = {}
 
 def _parse_bbox(layer_el):
     bb = layer_el.find("wms:EX_GeographicBoundingBox", NS)
@@ -194,3 +195,16 @@ def get_layer_columns(layer_name: str) -> list[str]:
     except Exception as e:
         print(f"Erro ao buscar colunas da camada {layer_name}: {e}")
         return []
+    
+def apply_cql_filter(layer_name: str, cql_filter:str):
+    global active_layer_filters
+
+    active_layer_filters[layer_name] = cql_filter
+
+    return f"Sucesso! O filtro '{cql_filter}' foi aplicado na camada'{layer_name}'."
+
+def clear_cql_filter(layer_name:str):
+    global active_layer_filters
+    if layer_name in active_layer_filters:
+        del active_layer_filters[layer_name]
+    return f"Filtro removido da camada {layer_name}."
