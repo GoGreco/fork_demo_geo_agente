@@ -1,138 +1,43 @@
 INFO:     Will watch for changes in these directories: ['/mnt/sdb1/repos/fork_demo_geo_agente/backend']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [61849] using WatchFiles
-INFO:     Started server process [61852]
+INFO:     Started reloader process [31403] using WatchFiles
+INFO:     Started server process [31406]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 WMS: loaded 9554 layers
-INFO:     127.0.0.1:35208 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:50960 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.98s tokens(prompt=1264, completion=118) | msg_count=3
-[iter 0] tool search_layers({'query': 'municipio'}): 0.0059s
-[iter 1] LLM call: 12.21s tokens(prompt=1822, completion=565) | msg_count=5
-[iter 1] tool add_layer({'name': 'CCAR:municipio', 'title': 'Município'}): 0.0003s
-[iter 2] LLM call: 1.32s tokens(prompt=2425, completion=55) | msg_count=7
-[iter 2] tool get_layer_columns({'name': 'CCAR:municipio'}): 0.3678s
-[iter 3] LLM call: 6.64s tokens(prompt=2540, completion=304) | msg_count=9
-[iter 3] tool remove_layer({'name': 'CCAR:municipio'}): 0.0000s
-[iter 4] LLM call: 2.83s tokens(prompt=2880, completion=126) | msg_count=11
-[iter 4] tool add_layer({'name': 'CGMAT:qg_2021_280_municipioscosteiros', 'title': 'Municípios Costeiros (lista de municípios) - 2021'}): 0.0002s
-[iter 5] LLM call: 1.57s tokens(prompt=3062, completion=65) | msg_count=13
-[iter 5] tool get_layer_columns({'name': 'CGMAT:qg_2021_280_municipioscosteiros'}): 0.3014s
-[iter 6] LLM call: 4.89s tokens(prompt=3198, completion=218) | msg_count=15
-[DONE] total=33.12s iterations=7
-INFO:     127.0.0.1:50960 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.04s tokens(prompt=2461, completion=168) | msg_count=17
-[iter 0] tool remove_layer({'name': 'CGMAT:qg_2021_280_municipioscosteiros'}): 0.0000s
-[iter 1] LLM call: 6.75s tokens(prompt=2680, completion=306) | msg_count=19
-[iter 1] tool add_layer({'name': 'CCAR:municipio', 'title': 'Município'}): 0.0001s
-[iter 2] LLM call: 2.71s tokens(prompt=3024, completion=119) | msg_count=21
-[DONE] total=13.51s iterations=3
-INFO:     127.0.0.1:35298 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.03s tokens(prompt=2755, completion=82) | msg_count=23
-[iter 0] tool remove_layer({'name': 'CCAR:municipio'}): 0.0000s
-[iter 1] LLM call: 1.44s tokens(prompt=2873, completion=60) | msg_count=25
-[iter 1] tool search_layers({'query': 'municipio'}): 0.0056s
-[iter 2] LLM call: 2.81s tokens(prompt=3373, completion=118) | msg_count=27
-[iter 2] tool add_layer({'name': 'CGMAT:qg_2024_280_municipioscosteiros_agreg', 'title': 'Municípios Costeiros (agregado de municípios) - 2024'}): 0.0002s
-[iter 3] LLM call: 1.75s tokens(prompt=3549, completion=73) | msg_count=29
-[iter 3] tool get_layer_columns({'name': 'CGMAT:qg_2024_280_municipioscosteiros_agreg'}): 0.3038s
-[iter 4] LLM call: 4.53s tokens(prompt=3685, completion=202) | msg_count=31
-[DONE] total=12.86s iterations=5
-INFO:     127.0.0.1:49056 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 5.51s tokens(prompt=3751, completion=239) | msg_count=33
-[iter 0] tool remove_layer({'name': 'CGMAT:qg_2024_280_municipioscosteiros_agreg'}): 0.0000s
-[iter 1] LLM call: 2.60s tokens(prompt=4043, completion=112) | msg_count=35
-[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'title': 'Municípios'}): 0.0002s
-[iter 2] LLM call: 1.70s tokens(prompt=4193, completion=69) | msg_count=37
-[iter 2] tool get_layer_columns({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.2706s
-[iter 3] LLM call: 4.75s tokens(prompt=4330, completion=215) | msg_count=39
-[DONE] total=14.83s iterations=4
-INFO:     127.0.0.1:43784 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 5.13s tokens(prompt=4313, completion=201) | msg_count=41
-[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'filter': "sigla_uf LIKE 'MS%'"}): 0.0000s
-[iter 1] LLM call: 2.67s tokens(prompt=4546, completion=112) | msg_count=43
-[DONE] total=7.79s iterations=2
-INFO:     127.0.0.1:57812 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 9.15s tokens(prompt=4552, completion=416) | msg_count=45
-[DONE] total=9.15s iterations=1
-INFO:     127.0.0.1:43190 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.63s tokens(prompt=4738, completion=110) | msg_count=47
-[iter 0] tool remove_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.0000s
-[iter 1] LLM call: 1.63s tokens(prompt=4897, completion=68) | msg_count=49
-[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'title': 'Municípios'}): 0.0002s
-[iter 2] LLM call: 1.40s tokens(prompt=5003, completion=57) | msg_count=51
-[iter 2] tool get_layer_columns({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.2721s
-[iter 3] LLM call: 5.01s tokens(prompt=5128, completion=224) | msg_count=53
-[DONE] total=10.94s iterations=4
-INFO:     127.0.0.1:40370 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 5.03s tokens(prompt=5299, completion=211) | msg_count=55
-[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'filter': "sigla_uf LIKE 'MG%' OR sigla_uf LIKE 'PI%' OR sigla_uf LIKE 'TO%' OR sigla_uf LIKE 'AC%' OR sigla_uf LIKE 'RR%'"}): 0.0000s
-[iter 1] LLM call: 4.52s tokens(prompt=5542, completion=201) | msg_count=57
-[DONE] total=9.56s iterations=2
-INFO:     127.0.0.1:35168 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.13s tokens(prompt=5663, completion=134) | msg_count=59
-[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'filter': "sigla_uf LIKE 'MS%'"}): 0.0000s
-[iter 1] LLM call: 2.90s tokens(prompt=5829, completion=121) | msg_count=61
-[DONE] total=6.04s iterations=2
-INFO:     127.0.0.1:49942 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.16s tokens(prompt=5909, completion=84) | msg_count=63
-[iter 0] tool remove_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.0000s
-[iter 1] LLM call: 1.70s tokens(prompt=6042, completion=70) | msg_count=65
-[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'title': 'Municípios'}): 0.0002s
-[iter 2] LLM call: 1.77s tokens(prompt=6150, completion=71) | msg_count=67
-[iter 2] tool get_layer_columns({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.2968s
-[iter 3] LLM call: 4.58s tokens(prompt=6289, completion=202) | msg_count=69
-[DONE] total=10.50s iterations=4
-INFO:     127.0.0.1:42590 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.15s tokens(prompt=6435, completion=131) | msg_count=71
-[iter 0] tool get_layer_columns({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.2785s
-[iter 1] LLM call: 2.44s tokens(prompt=6634, completion=102) | msg_count=73
-[iter 1] tool apply_cql_filter({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'filter': "nm_mun LIKE 'C%'"}): 0.0000s
-[iter 2] LLM call: 3.47s tokens(prompt=6768, completion=149) | msg_count=75
-[DONE] total=9.33s iterations=3
-INFO:     127.0.0.1:59658 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.12s tokens(prompt=6814, completion=84) | msg_count=77
-[iter 0] tool remove_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.0000s
-[iter 1] LLM call: 1.71s tokens(prompt=6947, completion=71) | msg_count=79
-[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'title': 'Municípios'}): 0.0002s
-[iter 2] LLM call: 1.60s tokens(prompt=7056, completion=64) | msg_count=81
-[iter 2] tool get_layer_columns({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun'}): 0.2135s
-[iter 3] LLM call: 4.71s tokens(prompt=7188, completion=207) | msg_count=83
-[DONE] total=10.35s iterations=4
-INFO:     127.0.0.1:59720 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 11.33s tokens(prompt=7338, completion=506) | msg_count=85
-[DONE] total=11.33s iterations=1
-INFO:     127.0.0.1:44476 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 8.97s tokens(prompt=7728, completion=394) | msg_count=87
-[iter 0] tool search_layers({'query': 'area municipio'}): 0.0031s
-[iter 1] LLM call: 2.54s tokens(prompt=8497, completion=102) | msg_count=89
-[iter 1] tool add_layer({'name': 'CCAR:BC25_Municipio_A', 'title': 'Município (Área)'}): 0.0002s
-[iter 2] LLM call: 1.45s tokens(prompt=8645, completion=56) | msg_count=91
-[iter 2] tool get_layer_columns({'name': 'CCAR:BC25_Municipio_A'}): 0.3497s
-[iter 3] LLM call: 4.96s tokens(prompt=8777, completion=217) | msg_count=93
-[iter 3] tool get_layer_info({'name': 'CCAR:BC25_Municipio_A'}): 0.0002s
-[iter 4] LLM call: 5.07s tokens(prompt=9179, completion=223) | msg_count=95
-[iter 4] tool search_layers({'query': 'municipio populoso'}): 0.0799s
-[iter 5] LLM call: 7.65s tokens(prompt=9917, completion=333) | msg_count=97
-[iter 5] tool zoom_to_layer({'name': 'CCAR:BC25_Municipio_A'}): 0.0002s
-[iter 6] LLM call: 5.01s tokens(prompt=10289, completion=219) | msg_count=99
-[iter 6] tool search_layers({'query': 'territorio municipal'}): 0.0789s
-[iter 7] LLM call: 6.42s tokens(prompt=10929, completion=276) | msg_count=101
-[iter 7] tool remove_layer({'name': 'CCAR:BC25_Municipio_A'}): 0.0000s
-[iter 8] LLM call: 3.79s tokens(prompt=11246, completion=163) | msg_count=103
-[iter 8] tool add_layer({'name': 'CCAR:BC250_2023_Municipio_A', 'title': 'Município (Área 2023)'}): 0.0002s
-[iter 9] LLM call: 1.81s tokens(prompt=11460, completion=69) | msg_count=105
-[iter 9] tool get_layer_columns({'name': 'CCAR:BC250_2023_Municipio_A'}): 0.2834s
-[MAX_ITER] total=48.47s
-INFO:     127.0.0.1:55146 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.72s tokens(prompt=10003, completion=84) | msg_count=108
-[iter 0] tool remove_layer({'name': 'CCAR:BC250_2023_Municipio_A'}): 0.0000s
-[iter 1] LLM call: 5.68s tokens(prompt=10134, completion=252) | msg_count=110
-[DONE] total=8.40s iterations=2
-INFO:     127.0.0.1:40184 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.41s tokens(prompt=10366, completion=135) | msg_count=112
-[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_04_Municipios_cd_mun', 'filter': "nm_mun LIKE 'Brasília'"}): 0.0000s
-[iter 1] LLM call: 2.57s tokens(prompt=10533, completion=104) | msg_count=114
-[DONE] total=5.97s iterations=2
-INFO:     127.0.0.1:57916 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60720 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:34254 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.03s tokens(prompt=1253, completion=105) | msg_count=3
+[iter 0] tool search_layers({'query': 'limite estado'}): 0.0650s
+[iter 1] LLM call: 2.88s tokens(prompt=1701, completion=119) | msg_count=6
+[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'title': 'Limites de UFs'}): 0.0003s
+[iter 2] LLM call: 1.84s tokens(prompt=1810, completion=78) | msg_count=8
+[iter 2] tool get_layer_columns({'name': 'CGMAT:pbqg22_02_Estado_LimUF'}): 0.3138s
+[iter 0] LLM call: 3.60s tokens(prompt=1654, completion=149) | msg_count=10
+[iter 0] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'title': 'Limites de UFs'}): 0.0003s
+[iter 1] LLM call: 1.76s tokens(prompt=2131, completion=69) | msg_count=12
+[iter 1] tool get_layer_columns({'name': 'CGMAT:pbqg22_02_Estado_LimUF'}): 0.1934s
+[iter 3] LLM call: 3.67s tokens(prompt=1945, completion=153) | msg_count=14
+[DONE] total=11.80s iterations=4
+INFO:     127.0.0.1:34254 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 2] LLM call: 5.22s tokens(prompt=2257, completion=240) | msg_count=15
+[DONE] total=10.77s iterations=3
+INFO:     127.0.0.1:34268 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.87s tokens(prompt=2376, completion=165) | msg_count=17
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'filter': "nm_uf ILIKE '%S%'"}): 0.0000s
+[iter 1] LLM call: 5.59s tokens(prompt=2573, completion=254) | msg_count=19
+[DONE] total=9.46s iterations=2
+INFO:     127.0.0.1:41512 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 7.49s tokens(prompt=2742, completion=339) | msg_count=21
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'filter': "nm_uf = 'Bahia'"}): 0.0001s
+[iter 1] LLM call: 6.24s tokens(prompt=3113, completion=284) | msg_count=23
+[DONE] total=13.73s iterations=2
+INFO:     127.0.0.1:40578 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 4.68s tokens(prompt=3144, completion=208) | msg_count=25
+[DONE] total=4.68s iterations=1
+INFO:     127.0.0.1:43244 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 12.92s tokens(prompt=3364, completion=592) | msg_count=27
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'filter': "(nm_uf ILIKE '%s%' AND nm_uf NOT ILIKE '%a%' AND nm_uf NOT ILIKE '%p%') OR (nm_uf ILIKE '%a%' AND nm_uf NOT ILIKE '%s%' AND nm_uf NOT ILIKE '%p%') OR (nm_uf ILIKE '%p%' AND nm_uf NOT ILIKE '%s%' AND nm_uf NOT ILIKE '%a%')"}): 0.0000s
+[iter 1] LLM call: 10.81s tokens(prompt=3988, completion=499) | msg_count=29
+[DONE] total=23.73s iterations=2
+INFO:     127.0.0.1:35682 - "POST /api/chat HTTP/1.1" 200 OK
