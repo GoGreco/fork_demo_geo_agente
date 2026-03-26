@@ -24,7 +24,7 @@ client = AsyncOpenAI(
 
 SYSTEM_PROMPT = """Responda sempre em português. Você é um assistente para processamento de dados geográficos. 
 Você lerá o que o usuário está digitando e vai retornar para o usuário qual função você acredita ser mais adequada para essa requisição.
-- caso for filtrar UTILIZE APENAS as colunas conhecidas da camada """
+- caso for filtrar UTILIZE APENAS as colunas conhecidas da camada DÊ PREFERÊNCIA por opções mais abrangentes dentro dos filtros"""
 
 TOOLS = [
     {

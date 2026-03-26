@@ -1,947 +1,151 @@
 INFO:     Will watch for changes in these directories: ['/mnt/sdb1/repos/fork_demo_geo_agente/backend']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [112927] using WatchFiles
-INFO:     Started server process [112931]
+INFO:     Started reloader process [153518] using WatchFiles
+INFO:     Started server process [153522]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 WMS: loaded 9554 layers
-INFO:     127.0.0.1:48210 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:48210 - "GET /app.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:48222 - "GET /style.css HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:48210 - "POST /api/session HTTP/1.1" 200 OK
-INFO:     127.0.0.1:48222 - "POST /api/chat HTTP/1.1" 500 Internal Server Error
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
-    await super().__call__(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 96, in __call__
-    await self.simple_response(scope, receive, send, request_headers=headers)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 154, in simple_response
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
-    await route.handle(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
-    return await dependant.call(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/main.py", line 54, in api_chat
-    reply, actions = await chat(req.session_id, req.message, layers)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/agent.py", line 305, in chat
-    response = await client.chat.completions.create(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2714, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1884, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1669, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': "{'error': '/chat/completions: Invalid model name passed in model=qwen3.5-9b. Call `/v1/models` to view available models for your key.'}", 'type': 'None', 'param': 'None', 'code': '400'}}
-INFO:     127.0.0.1:45016 - "POST /api/chat HTTP/1.1" 500 Internal Server Error
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
-    await super().__call__(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 96, in __call__
-    await self.simple_response(scope, receive, send, request_headers=headers)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 154, in simple_response
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
-    await route.handle(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
-    return await dependant.call(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/main.py", line 54, in api_chat
-    reply, actions = await chat(req.session_id, req.message, layers)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/agent.py", line 305, in chat
-    response = await client.chat.completions.create(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2714, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1884, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1669, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': "{'error': '/chat/completions: Invalid model name passed in model=qwen3.5-9b. Call `/v1/models` to view available models for your key.'}", 'type': 'None', 'param': 'None', 'code': '400'}}
+INFO:     127.0.0.1:56870 - "GET / HTTP/1.1" 304 Not Modified
 WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [112931]
-INFO:     Started server process [114154]
+INFO:     Finished server process [153522]
+INFO:     Started server process [154074]
+INFO:     Waiting for application startup.
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [154074]
+INFO:     Started server process [154216]
+INFO:     Waiting for application startup.
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [154216]
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Started server process [154338]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [114154]
-INFO:     Started server process [114405]
+INFO:     Finished server process [154338]
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Started server process [154547]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [154547]
+INFO:     Started server process [154639]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 WMS: loaded 9554 layers
-INFO:     127.0.0.1:33588 - "POST /api/chat HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:41336 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:41336 - "POST /api/session HTTP/1.1" 200 OK
-INFO:     127.0.0.1:41336 - "POST /api/chat HTTP/1.1" 500 Internal Server Error
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
-    await super().__call__(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 96, in __call__
-    await self.simple_response(scope, receive, send, request_headers=headers)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 154, in simple_response
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
-    await route.handle(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
-    return await dependant.call(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/main.py", line 54, in api_chat
-    reply, actions = await chat(req.session_id, req.message, layers)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/agent.py", line 305, in chat
-    response = await client.chat.completions.create(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2714, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1884, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1669, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': "{'error': '/chat/completions: Invalid model name passed in model=qwen3.5-9b. Call `/v1/models` to view available models for your key.'}", 'type': 'None', 'param': 'None', 'code': '400'}}
-[iter 0] LLM call: 22.61s tokens(prompt=1083, completion=160) | msg_count=4
-[DONE] total=22.61s iterations=1
-INFO:     127.0.0.1:45856 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 6.47s tokens(prompt=1186, completion=301) | msg_count=6
-[DONE] total=6.47s iterations=1
-INFO:     127.0.0.1:59288 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.91s tokens(prompt=1407, completion=129) | msg_count=8
-[DONE] total=2.91s iterations=1
-INFO:     127.0.0.1:60654 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.45s tokens(prompt=1493, completion=105) | msg_count=10
-[DONE] total=2.45s iterations=1
-INFO:     127.0.0.1:53234 - "POST /api/chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [114405]
-INFO:     Started server process [123275]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [123275]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [123411]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [123411]
-INFO:     Started server process [123647]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [123647]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [123792]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [123792]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [124045]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [124045]
-INFO:     Started server process [124163]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:51554 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:51554 - "GET /app.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:51682 - "GET /style.css HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:56524 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 21.18s tokens(prompt=1064, completion=218) | msg_count=3
-[DONE] total=21.18s iterations=1
-INFO:     127.0.0.1:56524 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 1.75s tokens(prompt=1206, completion=75) | msg_count=5
-[iter 0] tool list_layers({}): 0.0001s
-[iter 1] LLM call: 3.92s tokens(prompt=2405, completion=166) | msg_count=7
-[iter 1] tool search_layers({'query': 'magnetismo'}): 0.0449s
-[iter 2] LLM call: 1.68s tokens(prompt=3017, completion=65) | msg_count=9
-[iter 2] tool search_layers({'query': 'vulcão'}): 0.0357s
-[iter 3] LLM call: 1.54s tokens(prompt=3439, completion=58) | msg_count=11
-[iter 3] tool search_layers({'query': 'tremor'}): 0.0859s
-[iter 4] LLM call: 1.77s tokens(prompt=3788, completion=71) | msg_count=13
-[iter 4] tool search_layers({'query': 'radiação'}): 0.0645s
-[iter 5] LLM call: 1.64s tokens(prompt=4209, completion=67) | msg_count=15
-[iter 5] tool search_layers({'query': 'radônio'}): 0.0418s
-[iter 6] LLM call: 1.62s tokens(prompt=4352, completion=70) | msg_count=17
-[iter 6] tool search_layers({'query': 'tubulação'}): 0.0413s
-[iter 7] LLM call: 1.85s tokens(prompt=4775, completion=75) | msg_count=19
-[iter 7] tool search_layers({'query': 'ondas'}): 0.0379s
-[iter 8] LLM call: 1.58s tokens(prompt=4993, completion=67) | msg_count=21
-[iter 8] tool search_layers({'query': 'oxigenio'}): 0.0005s
-[iter 9] LLM call: 1.84s tokens(prompt=5507, completion=72) | msg_count=23
-[iter 9] tool search_layers({'query': 'horizonte'}): 0.0006s
-[MAX_ITER] total=19.54s
-INFO:     127.0.0.1:43928 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.07s tokens(prompt=5545, completion=122) | msg_count=26
-[iter 0] tool search_layers({'query': 'cidades'}): 0.0012s
-[iter 1] LLM call: 1.68s tokens(prompt=6026, completion=64) | msg_count=28
-[iter 1] tool search_layers({'query': 'costa'}): 0.0516s
-[iter 2] LLM call: 4.32s tokens(prompt=6523, completion=187) | msg_count=30
-[iter 2] tool search_layers({'query': 'portos'}): 0.0005s
-[iter 3] LLM call: 3.27s tokens(prompt=7065, completion=137) | msg_count=32
-[iter 3] tool add_layer({'name': 'CGEO:Portos', 'title': 'Portos (Cidades Costeiras)'}): 0.0002s
-[iter 4] LLM call: 2.64s tokens(prompt=7243, completion=113) | msg_count=34
-[DONE] total=16.03s iterations=5
-INFO:     127.0.0.1:50996 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 1.78s tokens(prompt=6988, completion=57) | msg_count=36
-[iter 0] tool search_layers({'query': 'estados'}): 0.0613s
-[iter 1] LLM call: 3.04s tokens(prompt=7351, completion=130) | msg_count=38
-[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'title': 'Estados Brasileiros (Unidades da Federação)'}): 0.0001s
-[iter 2] LLM call: 4.96s tokens(prompt=7534, completion=223) | msg_count=40
-[DONE] total=9.84s iterations=3
-INFO:     127.0.0.1:51490 - "POST /api/chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [124163]
-INFO:     Started server process [125821]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:41458 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:57788 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.16s tokens(prompt=1064, completion=113) | msg_count=3
-[iter 0] tool search_layers({'query': 'estados brasileiros'}): 0.0993s
-[iter 1] LLM call: 1.86s tokens(prompt=1553, completion=80) | msg_count=5
-[iter 1] tool search_layers({'query': 'divisão administrativa'}): 0.0008s
-[iter 2] LLM call: 1.77s tokens(prompt=1824, completion=78) | msg_count=7
-[iter 2] tool search_layers({'query': 'estados'}): 0.0385s
-[iter 3] LLM call: 3.77s tokens(prompt=2208, completion=167) | msg_count=9
-[iter 3] tool get_layer_info({'name': 'CGMAT:2022_02_pbqg22_Mapa02_Estado'}): 0.0002s
-[iter 4] LLM call: 2.19s tokens(prompt=2512, completion=95) | msg_count=11
-[iter 4] tool add_layer({'name': 'CGMAT:2022_02_pbqg22_Mapa02_Estado', 'title': 'Mapa 02 - Estado'}): 0.0001s
-[iter 5] LLM call: 2.21s tokens(prompt=2645, completion=93) | msg_count=13
-[DONE] total=15.11s iterations=6
-INFO:     127.0.0.1:57788 - "POST /api/chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [125821]
-INFO:     Started server process [126557]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:37272 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:60074 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.63s tokens(prompt=1082, completion=135) | msg_count=3
-[DONE] total=3.63s iterations=1
-INFO:     127.0.0.1:60074 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.67s tokens(prompt=1124, completion=121) | msg_count=5
-[DONE] total=2.67s iterations=1
-INFO:     127.0.0.1:33138 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 9.11s tokens(prompt=1171, completion=426) | msg_count=7
-[DONE] total=9.11s iterations=1
-INFO:     127.0.0.1:59998 - "POST /api/chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [126557]
-INFO:     Started server process [131286]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [131286]
-INFO:     Started server process [131563]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [131563]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [131754]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [131754]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [131917]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [131917]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [132112]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [132112]
-INFO:     Started server process [132274]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [132274]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [132445]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [132445]
-INFO:     Started server process [132633]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:41532 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:33026 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.69s tokens(prompt=1107, completion=138) | msg_count=3
-[iter 0] tool search_layers({'query': 'estado'}): 0.0009s
-[iter 1] LLM call: 2.86s tokens(prompt=1789, completion=123) | msg_count=5
-[iter 1] tool get_layer_columns({'name': 'CGMAT:pbqg22_02_Estado_NomUF'}): 0.2885s
-[iter 2] LLM call: 3.32s tokens(prompt=1969, completion=149) | msg_count=7
-[iter 2] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'title': 'Estado'}): 0.0002s
-[iter 3] LLM call: 3.06s tokens(prompt=2151, completion=140) | msg_count=9
-[iter 3] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': "nm_uf LIKE '%s%'"}): 0.0000s
-[iter 4] LLM call: 7.46s tokens(prompt=2323, completion=346) | msg_count=11
-[DONE] total=20.68s iterations=5
-INFO:     127.0.0.1:33026 - "POST /api/chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [132633]
-INFO:     Started server process [133640]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [133640]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [133840]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [133840]
-INFO:     Started server process [134051]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:38420 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:38648 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.05s tokens(prompt=1009, completion=158) | msg_count=3
-[iter 0] tool search_layers({'query': 'nordeste estados'}): 0.0688s
-[iter 1] LLM call: 1.95s tokens(prompt=1647, completion=82) | msg_count=5
-[iter 1] tool search_layers({'query': 'capitais estados'}): 0.0759s
-[iter 2] LLM call: 1.98s tokens(prompt=2208, completion=83) | msg_count=7
-[iter 2] tool search_layers({'query': 'limites states'}): 0.0561s
-[iter 3] LLM call: 3.08s tokens(prompt=2487, completion=138) | msg_count=9
-[iter 3] tool get_layer_columns({'name': 'CGMAT:pbqg22_02_Estado_LimUF'}): 0.3577s
-[iter 4] LLM call: 5.44s tokens(prompt=2682, completion=245) | msg_count=11
-[iter 4] tool search_layers({'query': 'capital estados'}): 0.1061s
-[iter 5] LLM call: 7.17s tokens(prompt=3449, completion=323) | msg_count=13
-[iter 5] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'title': 'Limites de UFs (Federal)'}): 0.0002s
-[iter 6] LLM call: 5.07s tokens(prompt=3812, completion=233) | msg_count=15
-[iter 6] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_LimUF', 'filter': "nm_uf = 'Alagoas' or nm_uf = 'Bahia' or nm_uf = 'Ceará' or nm_uf = 'Pernambuco' or nm_uf = 'Paraíba' or nm_uf = 'Piauí' or nm_uf = 'Rio Grande do Norte' or nm_uf = 'Maranhão' or nm_uf = 'Sergipe'"}): 0.0000s
-[iter 7] LLM call: 2.06s tokens(prompt=4077, completion=88) | msg_count=17
-[iter 7] tool zoom_to_layer({'name': 'CGMAT:pbqg22_02_Estado_LimUF'}): 0.0001s
-[iter 8] LLM call: 3.65s tokens(prompt=4212, completion=161) | msg_count=19
-[DONE] total=35.12s iterations=9
-INFO:     127.0.0.1:38648 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 26.13s tokens(prompt=3440, completion=1188) | msg_count=21
-[DONE] total=26.13s iterations=1
-INFO:     127.0.0.1:47364 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.57s tokens(prompt=3993, completion=151) | msg_count=23
-[iter 0] tool add_layer({'name': 'CGEO:ANMS2010_04_setas_nordeste_emig2008', 'title': 'Intensidade da migração Nordeste (hab.)'}): 0.0001s
-[iter 1] LLM call: 3.09s tokens(prompt=4196, completion=135) | msg_count=25
-[DONE] total=6.66s iterations=2
-INFO:     127.0.0.1:56552 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.59s tokens(prompt=4317, completion=201) | msg_count=27
-[iter 0] tool remove_layer({'name': 'CGMAT:pbqg22_02_Estado_LimUF'}): 0.0000s
-[iter 0] tool remove_layer({'name': 'CGEO:ANMS2010_04_setas_nordeste_emig2008'}): 0.0000s
-[iter 1] LLM call: 3.48s tokens(prompt=4613, completion=153) | msg_count=30
-[DONE] total=8.07s iterations=2
-INFO:     127.0.0.1:41128 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.02s tokens(prompt=4665, completion=84) | msg_count=32
-[iter 0] tool search_layers({'query': 'centro-oeste estados'}): 0.0866s
-[iter 1] LLM call: 1.94s tokens(prompt=4809, completion=78) | msg_count=34
-[iter 1] tool search_layers({'query': 'capitais centro-oeste'}): 0.1133s
-[iter 2] LLM call: 1.50s tokens(prompt=5337, completion=57) | msg_count=36
-[iter 2] tool search_layers({'query': 'limites estados centro-oeste'}): 0.1129s
-[iter 3] LLM call: 3.18s tokens(prompt=5491, completion=140) | msg_count=38
-[iter 3] tool search_layers({'query': 'Mato Grosso'}): 0.0008s
-[iter 3] tool search_layers({'query': 'Mato Grosso do Sul'}): 0.0030s
-[iter 3] tool search_layers({'query': 'Goiás'}): 0.0003s
-[iter 4] LLM call: 2.97s tokens(prompt=6832, completion=115) | msg_count=42
-[iter 4] tool search_layers({'query': 'Tocantins'}): 0.0004s
-[iter 4] tool search_layers({'query': 'Distrito Federal'}): 0.0006s
-[iter 4] tool search_layers({'query': 'limites estaduais'}): 0.0722s
-[iter 5] LLM call: 2.79s tokens(prompt=8215, completion=106) | msg_count=46
-[iter 5] tool search_layers({'query': 'agronegócio centro-oeste'}): 0.0945s
-[iter 5] tool search_layers({'query': 'pecuária centro-oeste'}): 0.0918s
-[iter 6] LLM call: 22.17s tokens(prompt=8748, completion=1008) | msg_count=49
-[DONE] total=37.15s iterations=7
-INFO:     127.0.0.1:51042 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.98s tokens(prompt=9481, completion=118) | msg_count=51
-[iter 0] tool add_layer({'name': 'CREN:GeologiaSD22', 'title': 'Mapa Geológico da Folha SD.22 - Goiás'}): 0.0001s
-[iter 1] LLM call: 3.88s tokens(prompt=9654, completion=171) | msg_count=53
-[DONE] total=7.87s iterations=2
-INFO:     127.0.0.1:37362 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 8.54s tokens(prompt=9798, completion=376) | msg_count=55
-[DONE] total=8.54s iterations=1
-INFO:     127.0.0.1:41220 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 19.85s tokens(prompt=10064, completion=91) | msg_count=57
-[iter 0] tool remove_layer({'name': 'CREN:GeologiaSD22'}): 0.0000s
-[iter 1] LLM call: 3.53s tokens(prompt=10195, completion=150) | msg_count=59
-[DONE] total=23.38s iterations=2
-INFO:     127.0.0.1:54938 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.68s tokens(prompt=10293, completion=111) | msg_count=61
-[iter 0] tool get_layer_columns({'name': 'CREN:GeologiaSD22'}): 0.3292s
-[iter 1] LLM call: 2.01s tokens(prompt=10501, completion=80) | msg_count=63
-[iter 1] tool add_layer({'name': 'CREN:GeologiaSD22', 'title': 'Mapa Geológico da Folha SD.22 - Goiás'}): 0.0001s
-[iter 2] LLM call: 8.38s tokens(prompt=10636, completion=378) | msg_count=65
-[DONE] total=13.40s iterations=3
-INFO:     127.0.0.1:45488 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.25s tokens(prompt=10929, completion=174) | msg_count=67
-[iter 0] tool get_layer_info({'name': 'CREN:GeologiaSD22'}): 0.0002s
-[iter 1] LLM call: 12.44s tokens(prompt=11179, completion=564) | msg_count=69
-[DONE] total=16.68s iterations=2
-INFO:     127.0.0.1:44352 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.72s tokens(prompt=11571, completion=103) | msg_count=71
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': "Tempo_Geologico = 'Jurássico'"}): 0.0000s
-[iter 1] LLM call: 8.27s tokens(prompt=11706, completion=373) | msg_count=73
-[DONE] total=10.99s iterations=2
-INFO:     127.0.0.1:41512 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.32s tokens(prompt=12066, completion=131) | msg_count=75
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': "Tempo_Geologico ILIKE '%Jurass%'"}): 0.0000s
-[iter 1] LLM call: 9.34s tokens(prompt=12229, completion=421) | msg_count=77
-[DONE] total=12.66s iterations=2
-INFO:     127.0.0.1:37878 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 11.50s tokens(prompt=12602, completion=507) | msg_count=79
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': 'TRUE'}): 0.0000s
-[iter 1] LLM call: 3.13s tokens(prompt=13141, completion=129) | msg_count=81
-[iter 1] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': '1 = 1'}): 0.0000s
-[iter 2] LLM call: 8.76s tokens(prompt=13302, completion=371) | msg_count=83
-[DONE] total=23.39s iterations=3
-INFO:     127.0.0.1:53088 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 6.99s tokens(prompt=13157, completion=166) | msg_count=85
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': "Tempo_Geologico ILIKE '%JURÁSSICO%'"}): 0.0001s
-[iter 1] LLM call: 10.43s tokens(prompt=13355, completion=468) | msg_count=87
-[DONE] total=17.43s iterations=2
-INFO:     127.0.0.1:42186 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 24.20s tokens(prompt=13756, completion=110) | msg_count=89
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': "Tempo_Geologico ILIKE '%TRIASSICO%'"}): 0.0000s
-[iter 1] LLM call: 9.32s tokens(prompt=13898, completion=416) | msg_count=91
-[DONE] total=33.52s iterations=2
-INFO:     127.0.0.1:57512 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.86s tokens(prompt=14290, completion=112) | msg_count=93
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': '1 = 1'}): 0.0000s
-[iter 1] LLM call: 11.04s tokens(prompt=14434, completion=493) | msg_count=95
-[DONE] total=13.90s iterations=2
-INFO:     127.0.0.1:51072 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 17.20s tokens(prompt=14876, completion=770) | msg_count=97
-[DONE] total=17.20s iterations=1
-INFO:     127.0.0.1:34838 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.22s tokens(prompt=15334, completion=128) | msg_count=99
-[iter 0] tool apply_cql_filter({'name': 'CREN:GeologiaSD22', 'filter': "Tempo_Geologico ILIKE '%CRETACE%'"}): 0.0000s
-[iter 1] LLM call: 12.23s tokens(prompt=15494, completion=550) | msg_count=101
-[DONE] total=15.45s iterations=2
-INFO:     127.0.0.1:53426 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.44s tokens(prompt=15995, completion=92) | msg_count=103
-[iter 0] tool remove_layer({'name': 'CREN:GeologiaSD22'}): 0.0000s
-[iter 1] LLM call: 5.67s tokens(prompt=16127, completion=246) | msg_count=105
-[DONE] total=8.10s iterations=2
-INFO:     127.0.0.1:50284 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 1.60s tokens(prompt=16327, completion=57) | msg_count=107
-[DONE] total=1.60s iterations=1
-INFO:     127.0.0.1:50284 - "POST /api/chat HTTP/1.1" 200 OK
-INFO:     127.0.0.1:52170 - "POST /api/chat HTTP/1.1" 500 Internal Server Error
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
-    await super().__call__(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 96, in __call__
-    await self.simple_response(scope, receive, send, request_headers=headers)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 154, in simple_response
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
-    await route.handle(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
-    return await dependant.call(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/main.py", line 54, in api_chat
-    reply, actions = await chat(req.session_id, req.message, layers)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/agent.py", line 302, in chat
-    response = await client.chat.completions.create(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2714, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1884, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1669, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': "litellm.BadRequestError: OpenAIException - You passed 16385 input tokens and requested 0 output tokens. However, the model's context length is only 16384 tokens, resulting in a maximum input length of 16384 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=16385). Received Model Group=qwen3.5-9b\nAvailable Model Group Fallbacks=None", 'type': None, 'param': None, 'code': '400'}}
-INFO:     127.0.0.1:55008 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:55008 - "GET /app.js HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:55014 - "GET /style.css HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:35440 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.82s tokens(prompt=1012, completion=118) | msg_count=3
-[iter 0] tool search_layers({'query': 'centro-oeste'}): 0.0629s
-[iter 1] LLM call: 25.75s tokens(prompt=1586, completion=451) | msg_count=5
-[DONE] total=28.63s iterations=2
-INFO:     127.0.0.1:35440 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.03s tokens(prompt=1954, completion=169) | msg_count=7
-[iter 0] tool get_layer_info({'name': 'CGEO:ANMS2010_07_centro_destino_feijao_2007'}): 0.0002s
-[iter 1] LLM call: 5.98s tokens(prompt=2270, completion=277) | msg_count=9
-[DONE] total=10.01s iterations=2
-INFO:     127.0.0.1:41484 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.95s tokens(prompt=2389, completion=217) | msg_count=11
-[iter 0] tool add_layer({'name': 'CGEO:ANMS2010_07_centro_destino_feijao_2007', 'title': 'Cidades de destino do feijão em 2007'}): 0.0002s
-[iter 0] tool get_layer_columns({'name': 'CGEO:ANMS2010_07_centro_destino_feijao_2007'}): 0.3732s
-[iter 1] LLM call: 5.71s tokens(prompt=2713, completion=257) | msg_count=14
-[DONE] total=11.03s iterations=2
-INFO:     127.0.0.1:57616 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 9.74s tokens(prompt=2930, completion=442) | msg_count=16
-[iter 0] tool apply_cql_filter({'name': 'CGEO:ANMS2010_07_centro_destino_feijao_2007', 'filter': "NM_UF like '%MG' || NM_UF like '%ES' || NM_UF like '%RJ' || NM_UF like '%SP'"}): 0.0000s
-[iter 1] LLM call: 5.39s tokens(prompt=3404, completion=246) | msg_count=18
-[DONE] total=15.14s iterations=2
-INFO:     127.0.0.1:36366 - "POST /api/chat HTTP/1.1" 200 OK
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [134051]
-INFO:     Started server process [145399]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [145399]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [145522]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [145522]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [145674]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [145674]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [145782]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [145782]
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [145979]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [145979]
-INFO:     Started server process [146092]
-INFO:     Waiting for application startup.
-INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:48586 - "POST /api/chat HTTP/1.1" 404 Not Found
-INFO:     127.0.0.1:48586 - "GET / HTTP/1.1" 304 Not Modified
-INFO:     127.0.0.1:55228 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.13s tokens(prompt=1026, completion=121) | msg_count=3
-[iter 0] tool search_layers({'query': 'sul'}): 0.0013s
-[iter 1] LLM call: 9.40s tokens(prompt=1546, completion=437) | msg_count=5
-[DONE] total=12.53s iterations=2
-INFO:     127.0.0.1:55228 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.86s tokens(prompt=1897, completion=162) | msg_count=7
-[iter 0] tool add_layer({'name': 'CGEO:artigos_absaber_a_sul_pt', 'title': "pontos América do Sul Ab'Saber"}): 0.0003s
-[iter 1] LLM call: 2.06s tokens(prompt=2104, completion=88) | msg_count=9
-[DONE] total=5.92s iterations=2
-INFO:     127.0.0.1:44136 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 8.17s tokens(prompt=2120, completion=374) | msg_count=11
-[iter 0] tool remove_layer({'name': 'CGEO:artigos_absaber_a_sul_pt'}): 0.0000s
-[iter 0] tool add_layer({'name': 'CGEO:AND2018_Sul_2015_Seta', 'title': 'Emigração partindo da região Sul – 2012 a 2015'}): 0.0002s
-[iter 1] LLM call: 3.46s tokens(prompt=2601, completion=154) | msg_count=14
-[DONE] total=11.64s iterations=2
-INFO:     127.0.0.1:53964 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.21s tokens(prompt=2554, completion=94) | msg_count=16
-[iter 0] tool get_layer_columns({'name': 'CGEO:AND2018_Sul_2015_Seta'}): 0.3115s
-[iter 1] LLM call: 2.89s tokens(prompt=2700, completion=130) | msg_count=18
-[DONE] total=5.41s iterations=2
-INFO:     127.0.0.1:44864 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.12s tokens(prompt=2839, completion=132) | msg_count=20
-[iter 0] tool remove_layer({'name': 'CGEO:AND2018_Sul_2015_Seta'}): 0.0000s
-[iter 1] LLM call: 2.68s tokens(prompt=3020, completion=117) | msg_count=22
-[iter 1] tool search_layers({'query': 'sul'}): 0.0010s
-[iter 2] LLM call: 11.62s tokens(prompt=3536, completion=531) | msg_count=24
-[DONE] total=17.42s iterations=3
-INFO:     127.0.0.1:47468 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 13.94s tokens(prompt=3822, completion=635) | msg_count=26
-[DONE] total=13.94s iterations=1
-INFO:     127.0.0.1:39320 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.49s tokens(prompt=4218, completion=105) | msg_count=28
-[iter 0] tool search_layers({'query': 'região sul brasil'}): 0.0751s
-[iter 1] LLM call: 1.87s tokens(prompt=4987, completion=73) | msg_count=30
-[iter 1] tool search_layers({'query': 'região geográfica 1'}): 0.0072s
-[iter 2] LLM call: 1.65s tokens(prompt=5546, completion=61) | msg_count=32
-[iter 2] tool search_layers({'query': 'indicadores Saúde região'}): 0.0027s
-[iter 3] LLM call: 1.44s tokens(prompt=6311, completion=49) | msg_count=34
-[iter 3] tool search_layers({'query': 'grande região'}): 0.0038s
-[iter 4] LLM call: 23.35s tokens(prompt=6756, completion=1076) | msg_count=36
-[DONE] total=30.89s iterations=5
-INFO:     127.0.0.1:59752 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 5.06s tokens(prompt=7646, completion=183) | msg_count=38
-[iter 0] tool add_layer({'name': 'ODS:ods_11_6_1_2016_rg_1', 'title': 'Indicador 11.6.1 - Massa total para disposição final (Milhões de toneladas), por Grande Região. 2016'}): 0.0002s
-[iter 1] LLM call: 4.36s tokens(prompt=7916, completion=191) | msg_count=40
-[DONE] total=9.42s iterations=2
-INFO:     127.0.0.1:53944 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.62s tokens(prompt=8074, completion=152) | msg_count=42
-[iter 0] tool get_layer_columns({'name': 'ODS:ods_11_6_1_2016_rg_1'}): 0.2828s
-[iter 1] LLM call: 7.83s tokens(prompt=8280, completion=352) | msg_count=44
-[DONE] total=11.73s iterations=2
-INFO:     127.0.0.1:43042 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.39s tokens(prompt=8599, completion=186) | msg_count=46
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor >= 259'}): 0.0001s
-[iter 1] LLM call: 5.16s tokens(prompt=8817, completion=228) | msg_count=48
-[DONE] total=9.54s iterations=2
-INFO:     127.0.0.1:35080 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 7.46s tokens(prompt=8989, completion=330) | msg_count=50
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor < 259'}): 0.0000s
-[iter 1] LLM call: 7.58s tokens(prompt=9351, completion=340) | msg_count=52
-[DONE] total=15.04s iterations=2
-INFO:     127.0.0.1:51260 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.42s tokens(prompt=9447, completion=144) | msg_count=54
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor <= 50'}): 0.0000s
-[iter 1] LLM call: 10.21s tokens(prompt=9623, completion=464) | msg_count=56
-[DONE] total=13.63s iterations=2
-INFO:     127.0.0.1:45654 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.63s tokens(prompt=10021, completion=193) | msg_count=58
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor = 100'}): 0.0001s
-[iter 1] LLM call: 9.66s tokens(prompt=10246, completion=435) | msg_count=60
-[DONE] total=14.29s iterations=2
-INFO:     127.0.0.1:40878 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 9.34s tokens(prompt=10621, completion=409) | msg_count=62
-[DONE] total=9.34s iterations=1
-INFO:     127.0.0.1:54556 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 6.88s tokens(prompt=10853, completion=304) | msg_count=64
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor = 100'}): 0.0000s
-[iter 1] LLM call: 7.76s tokens(prompt=11189, completion=348) | msg_count=66
-[DONE] total=14.64s iterations=2
-INFO:     127.0.0.1:57900 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.66s tokens(prompt=11347, completion=102) | msg_count=68
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor <= 100'}): 0.0000s
-[iter 1] LLM call: 8.33s tokens(prompt=11481, completion=372) | msg_count=70
-[DONE] total=10.99s iterations=2
-INFO:     127.0.0.1:33192 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.88s tokens(prompt=11868, completion=114) | msg_count=72
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor <= 80'}): 0.0000s
-[iter 1] LLM call: 2.83s tokens(prompt=12014, completion=117) | msg_count=74
-[DONE] total=5.71s iterations=2
-INFO:     127.0.0.1:57268 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.28s tokens(prompt=12122, completion=91) | msg_count=76
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor <= 50'}): 0.0000s
-[iter 1] LLM call: 11.08s tokens(prompt=12245, completion=500) | msg_count=78
-[DONE] total=13.36s iterations=2
-INFO:     127.0.0.1:38536 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.08s tokens(prompt=12777, completion=162) | msg_count=80
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor <= 3'}): 0.0000s
-[iter 1] LLM call: 9.41s tokens(prompt=12971, completion=420) | msg_count=82
-[DONE] total=13.49s iterations=2
-INFO:     127.0.0.1:56048 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.70s tokens(prompt=13301, completion=106) | msg_count=84
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor >= 10'}): 0.0000s
-[iter 1] LLM call: 1.75s tokens(prompt=13439, completion=69) | msg_count=86
-[DONE] total=4.45s iterations=2
-INFO:     127.0.0.1:58706 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.72s tokens(prompt=13516, completion=112) | msg_count=88
-[iter 0] tool apply_cql_filter({'name': 'ODS:ods_11_6_1_2016_rg_1', 'filter': 'valor >= 15'}): 0.0000s
-[iter 1] LLM call: 2.11s tokens(prompt=13660, completion=82) | msg_count=90
-[DONE] total=4.84s iterations=2
-INFO:     127.0.0.1:38164 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 5.82s tokens(prompt=13718, completion=251) | msg_count=92
-[DONE] total=5.82s iterations=1
-INFO:     127.0.0.1:52492 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.27s tokens(prompt=14055, completion=175) | msg_count=94
-[iter 0] tool add_layer({'name': 'CGEO:ANMS2010_04_setas_sul_emig2008', 'title': 'Intensidade da migração Sul (hab.)'}): 0.0002s
-[iter 1] LLM call: 0.86s tokens(prompt=14282, completion=23) | msg_count=96
-[DONE] total=5.14s iterations=2
-INFO:     127.0.0.1:34346 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.03s tokens(prompt=14317, completion=166) | msg_count=98
-[iter 0] tool remove_layer({'name': 'ODS:ods_11_6_1_2016_rg_1'}): 0.0000s
-[iter 0] tool remove_layer({'name': 'CGEO:ANMS2010_04_setas_sul_emig2008'}): 0.0000s
-[iter 1] LLM call: 7.38s tokens(prompt=14578, completion=324) | msg_count=101
-[DONE] total=11.41s iterations=2
-INFO:     127.0.0.1:34598 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.09s tokens(prompt=14770, completion=79) | msg_count=103
-[iter 0] tool search_layers({'query': 'estados brasileiros'}): 0.0793s
-[iter 1] LLM call: 2.05s tokens(prompt=15225, completion=79) | msg_count=105
-[iter 1] tool search_layers({'query': 'unidade federativa uf'}): 0.0885s
-[iter 2] LLM call: 2.38s tokens(prompt=15981, completion=84) | msg_count=107
-[iter 2] tool search_layers({'query': 'limites estados'}): 0.0665s
-INFO:     127.0.0.1:56304 - "POST /api/chat HTTP/1.1" 500 Internal Server Error
-ERROR:    Exception in ASGI application
-Traceback (most recent call last):
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/protocols/http/httptools_impl.py", line 416, in run_asgi
-    result = await app(  # type: ignore[func-returns-value]
-             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
-    return await self.app(scope, receive, send)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/applications.py", line 1159, in __call__
-    await super().__call__(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/applications.py", line 90, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 186, in __call__
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/errors.py", line 164, in __call__
-    await self.app(scope, receive, _send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 96, in __call__
-    await self.simple_response(scope, receive, send, request_headers=headers)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/cors.py", line 154, in simple_response
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
-    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 660, in __call__
-    await self.middleware_stack(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 680, in app
-    await route.handle(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/routing.py", line 276, in handle
-    await self.app(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 134, in app
-    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
-    raise exc
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
-    await app(scope, receive, sender)
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 120, in app
-    response = await f(request)
-               ^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 674, in app
-    raw_response = await run_endpoint_function(
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/fastapi/routing.py", line 328, in run_endpoint_function
-    return await dependant.call(**values)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/main.py", line 54, in api_chat
-    reply, actions = await chat(req.session_id, req.message, layers)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/backend/agent.py", line 304, in chat
-    response = await client.chat.completions.create(
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/resources/chat/completions/completions.py", line 2714, in create
-    return await self._post(
-           ^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1884, in post
-    return await self.request(cast_to, opts, stream=stream, stream_cls=stream_cls)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/mnt/sdb1/repos/fork_demo_geo_agente/.venv/lib/python3.12/site-packages/openai/_base_client.py", line 1669, in request
-    raise self._make_status_error_from_response(err.response) from None
-openai.BadRequestError: Error code: 400 - {'error': {'message': "litellm.BadRequestError: OpenAIException - You passed 16385 input tokens and requested 0 output tokens. However, the model's context length is only 16384 tokens, resulting in a maximum input length of 16384 tokens. Please reduce the length of the input prompt. (parameter=input_tokens, value=16385). Received Model Group=qwen3.5-9b\nAvailable Model Group Fallbacks=None", 'type': None, 'param': None, 'code': '400'}}
+INFO:     127.0.0.1:40830 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.82s tokens(prompt=1037, completion=100) | msg_count=3
+[iter 0] tool search_layers({'query': 'estados brasileiros'}): 0.0823s
+[iter 1] LLM call: 2.62s tokens(prompt=1513, completion=116) | msg_count=5
+[iter 1] tool search_layers({'query': 'unidades federativas'}): 0.1128s
+[iter 2] LLM call: 3.47s tokens(prompt=2096, completion=156) | msg_count=7
+[iter 2] tool add_layer({'name': 'CGEO:C02_unidades_da_federacao_2010', 'title': 'Unidades da federação 2010'}): 0.0003s
+[iter 3] LLM call: 3.19s tokens(prompt=2304, completion=145) | msg_count=9
+[DONE] total=12.29s iterations=4
+INFO:     127.0.0.1:40830 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.81s tokens(prompt=2215, completion=110) | msg_count=11
+[iter 0] tool get_layer_columns({'name': 'CGEO:C02_unidades_da_federacao_2010'}): 0.3342s
+[iter 1] LLM call: 7.38s tokens(prompt=2371, completion=341) | msg_count=13
+[iter 1] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UnidadeFed LIKE '%S%'"}): 0.0001s
+[iter 2] LLM call: 4.26s tokens(prompt=2744, completion=195) | msg_count=15
+[DONE] total=14.78s iterations=3
+INFO:     127.0.0.1:44850 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 12.06s tokens(prompt=2559, completion=557) | msg_count=17
+[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UPPER(UnidadeFed) LIKE '%S%'"}): 0.0001s
+[iter 1] LLM call: 5.43s tokens(prompt=3148, completion=246) | msg_count=19
+[DONE] total=17.49s iterations=2
+INFO:     127.0.0.1:51826 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.36s tokens(prompt=2954, completion=140) | msg_count=21
+[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UnidadeFed ILIKE '%S%'"}): 0.0000s
+[iter 1] LLM call: 3.96s tokens(prompt=3126, completion=177) | msg_count=23
+[DONE] total=7.32s iterations=2
+INFO:     127.0.0.1:56822 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 8.63s tokens(prompt=3240, completion=392) | msg_count=25
+[DONE] total=8.64s iterations=1
+INFO:     127.0.0.1:54280 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 9.46s tokens(prompt=3502, completion=434) | msg_count=27
+[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UnidadeFed = 'São Paulo'"}): 0.0000s
+[iter 1] LLM call: 5.79s tokens(prompt=3968, completion=262) | msg_count=29
+[DONE] total=15.25s iterations=2
+INFO:     127.0.0.1:56712 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.40s tokens(prompt=3874, completion=98) | msg_count=31
+[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': '1=1'}): 0.0000s
+[iter 1] LLM call: 4.08s tokens(prompt=4004, completion=182) | msg_count=33
+[DONE] total=6.48s iterations=2
+INFO:     127.0.0.1:38644 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.55s tokens(prompt=4170, completion=108) | msg_count=35
+[iter 0] tool remove_layer({'name': 'CGEO:C02_unidades_da_federacao_2010'}): 0.0000s
+[iter 1] LLM call: 4.97s tokens(prompt=4326, completion=226) | msg_count=37
+[DONE] total=7.52s iterations=2
+INFO:     127.0.0.1:38644 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.84s tokens(prompt=4499, completion=68) | msg_count=39
+[iter 0] tool search_layers({'query': 'rodovias'}): 0.0006s
+[iter 1] LLM call: 2.59s tokens(prompt=4792, completion=108) | msg_count=41
+[iter 1] tool get_layer_columns({'name': 'CGEO:AP_T_Rodovias_Brasil'}): 0.4927s
+[iter 2] LLM call: 1.34s tokens(prompt=4944, completion=54) | msg_count=43
+[iter 2] tool get_layer_columns({'name': 'CGEO:Rodovias'}): 0.4174s
+[iter 3] LLM call: 1.42s tokens(prompt=5046, completion=56) | msg_count=45
+[iter 3] tool get_layer_columns({'name': 'CGEO:C02_rodovias_ferrovias'}): 0.2210s
+[iter 4] LLM call: 1.68s tokens(prompt=5140, completion=68) | msg_count=47
+[iter 4] tool get_layer_columns({'name': 'CGEO:ANMS2010_09_rodovias_e_ferrovias_2006'}): 0.4402s
+[iter 5] LLM call: 1.26s tokens(prompt=5258, completion=47) | msg_count=49
+[iter 5] tool get_layer_columns({'name': 'CGEO:Rodovia'}): 0.1971s
+[iter 6] LLM call: 1.63s tokens(prompt=5352, completion=68) | msg_count=51
+[iter 6] tool get_layer_columns({'name': 'CGEMAT:pbqg22_00_Bc250_2021TrechoRod_complex'}): 0.1980s
+[iter 7] LLM call: 1.30s tokens(prompt=5459, completion=52) | msg_count=53
+[iter 7] tool get_layer_columns({'name': 'CCAR:Rodovias com escala'}): 0.3295s
+[iter 8] LLM call: 1.82s tokens(prompt=5553, completion=74) | msg_count=55
+[iter 8] tool search_layers({'query': 'UF rodovia'}): 0.0511s
+[iter 9] LLM call: 1.89s tokens(prompt=5964, completion=73) | msg_count=57
+[iter 9] tool get_layer_columns({'name': 'CGEO:C04_RodoviaPavimentada'}): 0.3928s
+[MAX_ITER] total=19.51s
+INFO:     127.0.0.1:39490 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.81s tokens(prompt=5785, completion=59) | msg_count=60
+[iter 0] tool search_layers({'query': 'satélite'}): 0.0442s
+[iter 1] LLM call: 1.37s tokens(prompt=6027, completion=55) | msg_count=62
+[iter 1] tool search_layers({'query': 'imagens'}): 0.0011s
+[iter 2] LLM call: 1.85s tokens(prompt=6764, completion=68) | msg_count=64
+[iter 2] tool search_layers({'query': 'ortofoto'}): 0.0428s
+[iter 3] LLM call: 1.75s tokens(prompt=6848, completion=70) | msg_count=66
+[iter 3] tool search_layers({'query': 'aerial'}): 0.0419s
+[iter 4] LLM call: 1.56s tokens(prompt=7194, completion=62) | msg_count=68
+[iter 4] tool search_layers({'query': 'fotod'}): 0.0406s
+[iter 5] LLM call: 1.12s tokens(prompt=7272, completion=41) | msg_count=70
+[iter 5] tool list_layers({}): 0.0002s
+[iter 6] LLM call: 8.42s tokens(prompt=8437, completion=365) | msg_count=72
+[DONE] total=18.06s iterations=7
+INFO:     127.0.0.1:47010 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 4.57s tokens(prompt=8570, completion=166) | msg_count=74
+[iter 0] tool add_layer({'name': 'CGED:V_REF_20210930_PLANSAT', 'title': 'Estações Planialtimétricas Satélite - Ref 30SET2021'}): 0.0002s
+[iter 1] LLM call: 6.60s tokens(prompt=8806, completion=294) | msg_count=76
+[DONE] total=11.17s iterations=2
+INFO:     127.0.0.1:51968 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 13.31s tokens(prompt=9066, completion=599) | msg_count=78
+[DONE] total=13.31s iterations=1
+INFO:     127.0.0.1:57492 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 4.53s tokens(prompt=9581, completion=192) | msg_count=80
+[iter 0] tool get_layer_info({'name': 'CGED:V_REF_20210930_PLANSAT'}): 0.0002s
+[iter 1] LLM call: 2.12s tokens(prompt=9992, completion=85) | msg_count=82
+[iter 1] tool get_layer_columns({'name': 'CGED:V_REF_20210930_PLANSAT'}): 0.2534s
+[iter 2] LLM call: 13.15s tokens(prompt=10158, completion=598) | msg_count=84
+[DONE] total=20.06s iterations=3
+INFO:     127.0.0.1:57102 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.92s tokens(prompt=10503, completion=158) | msg_count=86
+[iter 0] tool apply_cql_filter({'name': 'CGED:V_REF_20210930_PLANSAT', 'filter': "UF = 'SE'"}): 0.0001s
+[iter 1] LLM call: 7.94s tokens(prompt=10693, completion=355) | msg_count=88
+[DONE] total=11.85s iterations=2
+INFO:     127.0.0.1:60298 - "POST /api/chat HTTP/1.1" 200 OK
