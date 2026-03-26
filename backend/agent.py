@@ -22,9 +22,19 @@ client = AsyncOpenAI(
     api_key=API_KEY,
 )
 
-SYSTEM_PROMPT = """Responda sempre em português. Você é um assistente para processamento de dados geográficos. 
-Você lerá o que o usuário está digitando e vai retornar para o usuário qual função você acredita ser mais adequada para essa requisição.
-- caso for filtrar UTILIZE APENAS as colunas conhecidas da camada DÊ PREFERÊNCIA por opções mais abrangentes dentro dos filtros"""
+SYSTEM_PROMPT="""Você é um assistente de geoprocessamento que ajuda usuários a explorar dados geográficos do IBGE.
+Você tem acesso a ferramentas para listar, buscar, manipular e filtrar camadas WMS no mapa.
+
+IMPORTANTE - Seu fluxo de trabalho:
+- Quando o usuário pedir para adicionar/mostrar/exibir uma camada, SEMPRE use search_layers primeiro para encontrar o nome técnico, depois use add_layer com o resultado mais relevante.
+- Quando adicionar uma layer SEMPRE utilize a ferramenta get_layer_columns.
+- Quando houver múltiplos resultados de busca, escolha o mais recente e relevante e adicione-o. Se realmente houver ambiguidade, apresente no máximo 5 opções.
+- Quando o usuário pedir para listar camadas, use list_layers.
+- Quando o usuário pedir para remover uma camada, use remove_layer.
+- Use as ferramentas proativamente. NÃO peça informações que você pode descobrir usando as ferramentas.
+- Responda sempre em português. Seja conciso e útil.
+- Quando o usuário mencionar "estados", busque por "estado" ou "UF". Quando mencionar "municípios", busque por "municipio". Use termos simples nas buscas.
+- Quando o usuário pedir para filtrar uma camada SEMPRE use a ferramenta get_layer_columns primeiro para descobrir os nomes das colunas. Depois, use a ferramenta apply_cql_filter com o nome da coluna correto."""
 
 TOOLS = [
     {
@@ -209,7 +219,8 @@ def _tool_add_layer(args: dict) -> tuple[str, dict | None]:
     title = args.get("title", layer_name)
     info = get_layer_info(layer_name)
     bbox = info["bbox"] if info else None
-    action = {"type": "add_layer", "name": layer_name, "title": title, "bbox": bbox}
+    url = info["url"] if info else None
+    action = {"type": "add_layer", "name": layer_name, "title": title, "bbox": bbox, "url": url}
     return json.dumps(
         {"status": "ok", "message": f"Camada {title} adicionada ao mapa"}
     ), action

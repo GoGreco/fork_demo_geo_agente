@@ -194,3 +194,4 @@ def get_layer_columns(layer_name: str) -> list[str]:
     except Exception as e:
         print(f"Erro ao buscar colunas da camada {layer_name}: {e}")
         return []
+    
