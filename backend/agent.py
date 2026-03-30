@@ -5,12 +5,12 @@ import os
 import time
 import uuid
 from openai import AsyncOpenAI
-from wms import(
+from wms import (
     get_all_layers,
     search_layers,
     get_layer_info,
     get_layer_columns,
-    get_feature_bbox
+    get_feature_bbox,
 )
 
 logger = logging.getLogger("agent")
@@ -28,7 +28,7 @@ client = AsyncOpenAI(
     api_key=API_KEY,
 )
 
-SYSTEM_PROMPT="""# ROLE: Assistente Geoprocessamento IBGE (WMS/WFS). 
+SYSTEM_PROMPT = """# ROLE: Assistente Geoprocessamento IBGE (WMS/WFS). 
 # IDIOMA: Português. Estilo: Direto e Conciso.
 
 # PROTOCOLO OBRIGATÓRIO (NÃO PULE ETAPAS):
@@ -51,7 +51,6 @@ REALIZAR REMOÇÃO DE FILTROS: Filtre a camada por 1=1.
 - A estrutura para filtragem será por padrão nome_da_coluna_MINÚSCULA OPERAÇÃO_EM_CAIXA_ALTA parametro Ex: nm_mun ILIKE '%s%'.
 - Se o usuário pedir para filtrar por um data type string ou str SEMPRE UTILIZE ILIKE e o operador % antes e depois da palavra. 
 """
-
 
 
 TOOLS = [
@@ -146,7 +145,7 @@ TOOLS = [
                     },
                     "filter": {
                         "type": "string",
-                        "description": "Opcional. Expressão CQL para focar em uma feição específica. Ex: nm_mun ILIKE '%Minas Gerais%'"
+                        "description": "Opcional. Expressão CQL para focar em uma feição específica. Ex: nm_mun ILIKE '%Minas Gerais%'",
                     },
                 },
                 "required": ["name"],
@@ -160,14 +159,14 @@ TOOLS = [
             "description": "obtém os nomes exatos das colunas/atributos da tabela de uma camada. IMPORTANTE usar antes de criar um filtro CQL para não errar o nome da coluna.",
             "parameters": {
                 "type": "object",
-                "properties":{
-                    "name":{
+                "properties": {
+                    "name": {
                         "type": "string",
                         "description": "Nome técnico da camada WMS/WFS",
                     },
                 },
-                "required":["name"],
-            },       
+                "required": ["name"],
+            },
         },
     },
     {
@@ -193,7 +192,6 @@ TOOLS = [
     },
 ]
 
-# In-memory session store
 _sessions: dict[str, list] = {}
 
 MAX_TOOL_ITERATIONS = 10
@@ -222,9 +220,8 @@ def _tool_list_layers(_args: dict) -> tuple[str, dict | None]:
 def _tool_search_layers(args: dict) -> tuple[str, dict | None]:
     results = search_layers(args.get("query", ""))
     top_results = results[:10]
-    resultados_limpos =[
-        {"name": r.get("name"), "title": r.get("title")}
-        for r in top_results
+    resultados_limpos = [
+        {"name": r.get("name"), "title": r.get("title")} for r in top_results
     ]
     return json.dumps(resultados_limpos, ensure_ascii=False), None
 
@@ -242,7 +239,13 @@ def _tool_add_layer(args: dict) -> tuple[str, dict | None]:
     info = get_layer_info(layer_name)
     bbox = info["bbox"] if info else None
     url = info["url"] if info else None
-    action = {"type": "add_layer", "name": layer_name, "title": title, "bbox": bbox, "url": url}
+    action = {
+        "type": "add_layer",
+        "name": layer_name,
+        "title": title,
+        "bbox": bbox,
+        "url": url,
+    }
     return json.dumps(
         {"status": "ok", "message": f"Camada {title} adicionada ao mapa"}
     ), action
@@ -263,25 +266,37 @@ def _tool_zoom_to_layer(args: dict) -> tuple[str, dict | None]:
     if cql_filter:
         bbox = get_feature_bbox(layer_name, cql_filter)
         if bbox:
-            action = {"type": "zoom_to_layer", "name": layer_name, "bbox": bbox, "filter": cql_filter}
+            action = {
+                "type": "zoom_to_layer",
+                "name": layer_name,
+                "bbox": bbox,
+                "filter": cql_filter,
+            }
             return json.dumps(
-                {"status": "ok", "message": f"Zoom ajustado para a feição filtrada em {layer_name}"}
+                {
+                    "status": "ok",
+                    "message": f"Zoom ajustado para a feição filtrada em {layer_name}",
+                }
             ), action
         else:
-            return json.dumps({"error": "Não foi possível encontrar as coordenadas para o filtro fornecido"}), None
+            return json.dumps(
+                {
+                    "error": "Não foi possível encontrar as coordenadas para o filtro fornecido"
+                }
+            ), None
 
-    info =get_layer_info(layer_name)
+    info = get_layer_info(layer_name)
     if info and info.get("bbox"):
         return json.dumps(
-            {"status": "ok", "message": f"Zoom ajustado para a camada inteira {layer_name}"}
+            {
+                "status": "ok",
+                "message": f"Zoom ajustado para a camada inteira {layer_name}",
+            }
         ), action
-    
+
     return json.dumps({"error": "Camada não encontrada ou sem bbox"}), None
-    
 
 
-
-#tentativa fitro CQL
 def _tool_get_layer_columns(args: dict) -> tuple[str, dict | None]:
     layer_name = args.get("name", "")
     columns = get_layer_columns(layer_name)
@@ -290,6 +305,7 @@ def _tool_get_layer_columns(args: dict) -> tuple[str, dict | None]:
         return json.dumps({"colunas_disponíveis": columns}, ensure_ascii=False), None
     return json.dumps({"error": "Não foi possível carregar as colunas"}), None
 
+
 def _tool_apply_cql_filter(args: dict) -> tuple[str, dict | None]:
     layer_name = args.get("name", "")
     cql_filter = args.get("filter", "")
@@ -297,7 +313,6 @@ def _tool_apply_cql_filter(args: dict) -> tuple[str, dict | None]:
     action = {"type": "apply_cql_filter", "name": layer_name, "filter": cql_filter}
 
     return json.dumps({"status": "ok", "message": "Filtro CQL aplicado."}), action
-
 
 
 _TOOL_DISPATCH = {
@@ -318,28 +333,32 @@ def _execute_tool(name: str, args: dict) -> tuple[str, dict | None]:
         return handler(args)
     return json.dumps({"error": f"Tool desconhecida: {name}"}), None
 
+
 def _build_context_message(active_layers: list[dict]) -> str:
     if not active_layers:
         return "Estado atual do mapa: nenhuma camada ativa."
-    
+
     details = []
     for layer in active_layers:
         status = f"{layer['title']} ({layer['name']})"
-        if layer.get('filter'):
+        if layer.get("filter"):
             status += f" [Filtro Ativo: {layer['filter']}]"
         details.append(status)
-    
+
     return "Estado atual do mapa — camadas ativas: " + ", ".join(details)
+
 
 async def chat(
     session_id: str, user_message: str, active_layers: list[dict] | None = None
 ) -> tuple[str, list[dict]]:
     """Process a chat message. Returns (reply_text, actions_list)."""
     history = _get_history(session_id)
-    
+
     contexto_mapa = _build_context_message(active_layers or [])
 
-    full_user_content = f"CONTEXTO ATUAL DO MAPA: {contexto_mapa}\n\nPERGUNTA: {user_message}"
+    full_user_content = (
+        f"CONTEXTO ATUAL DO MAPA: {contexto_mapa}\n\nPERGUNTA: {user_message}"
+    )
 
     mensagem_do_usuario = {"role": "user", "content": full_user_content}
 
@@ -351,7 +370,7 @@ async def chat(
         t0 = time.perf_counter()
         response = await client.chat.completions.create(
             model=MODEL,
-            messages=history, 
+            messages=history,
             tools=TOOLS,
         )
         t_llm = time.perf_counter() - t0

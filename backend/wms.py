@@ -6,9 +6,7 @@ import httpx
 import xml.etree.ElementTree as ET
 from rapidfuzz import fuzz, process
 
-#WMS_URL = "http://localhost:8180/geoserver/wms"
 WMS_URL = "https://geoservicos.ibge.gov.br/geoserver/wms"
-#TENTATIVA FILTRO
 WFS_URL = "https://geoservicos.ibge.gov.br/geoserver/wfs"
 CAPABILITIES_URL = f"{WMS_URL}?service=WMS&request=GetCapabilities"
 NS = {"wms": "http://www.opengis.net/wms"}
@@ -105,9 +103,10 @@ def _fts5_search(query: str, limit: int = 50) -> list[dict]:
     if _db is None:
         return []
     tokens = query.split()
+
     if not tokens:
         return []
-    # Escape FTS5 operators and wrap each token as a prefix query
+    
     sanitized = []
     for t in tokens:
         t = t.replace('"', "").replace("*", "").replace("(", "").replace(")", "")
@@ -171,7 +170,6 @@ def get_layer_info(name: str) -> dict | None:
         "url": WMS_URL,
     }
 
-#WFS TESTE
 def get_layer_columns(layer_name: str) -> list[str]:
     url = f"{WFS_URL}?service=WFS&version=1.0.0&request=DescribeFeatureType&typeName={layer_name}"
 
