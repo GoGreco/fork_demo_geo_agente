@@ -1,151 +1,238 @@
 INFO:     Will watch for changes in these directories: ['/mnt/sdb1/repos/fork_demo_geo_agente/backend']
 INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO:     Started reloader process [153518] using WatchFiles
-INFO:     Started server process [153522]
+INFO:     Started reloader process [69996] using WatchFiles
+INFO:     Started server process [69999]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:56870 - "GET / HTTP/1.1" 304 Not Modified
+WMS: loaded 9562 layers
+INFO:     127.0.0.1:33204 - "GET / HTTP/1.1" 304 Not Modified
 WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [153522]
-INFO:     Started server process [154074]
-INFO:     Waiting for application startup.
-WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Application startup complete.
-INFO:     Shutting down
-INFO:     Waiting for application shutdown.
-INFO:     Application shutdown complete.
-INFO:     Finished server process [154074]
-INFO:     Started server process [154216]
+INFO:     Finished server process [69999]
+INFO:     Started server process [70629]
 INFO:     Waiting for application startup.
 WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
 INFO:     Application startup complete.
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [154216]
+INFO:     Finished server process [70629]
+INFO:     Started server process [70799]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WMS: loaded 9562 layers
+INFO:     127.0.0.1:32796 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.99s tokens(prompt=1349, completion=22) | msg_count=3
+[iter 0] tool search_layers({'query': 'diapin'}): 0.0445s
+[iter 1] LLM call: 2.43s tokens(prompt=1437, completion=41) | msg_count=5
+[iter 1] tool add_layer({'name': 'CREN:Geologia_ponto_Brasil', 'title': 'Geologia_ponto_Brasil'}): 0.0003s
+[iter 2] LLM call: 1.80s tokens(prompt=1519, completion=30) | msg_count=7
+[DONE] total=6.27s iterations=3
+INFO:     127.0.0.1:32796 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.85s tokens(prompt=1608, completion=30) | msg_count=9
+[iter 0] tool get_layer_columns({'name': 'CREN:Geologia_ponto_Brasil'}): 0.3248s
+[iter 1] LLM call: 4.79s tokens(prompt=1755, completion=81) | msg_count=11
+[DONE] total=6.96s iterations=2
+INFO:     127.0.0.1:58484 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 18.91s tokens(prompt=1896, completion=316) | msg_count=13
+[DONE] total=18.91s iterations=1
+INFO:     127.0.0.1:39434 - "POST /api/chat HTTP/1.1" 200 OK
 WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [154338]
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [70799]
+INFO:     Started server process [71746]
+INFO:     Waiting for application startup.
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [71746]
+INFO:     Started server process [71951]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WMS: loaded 9562 layers
+INFO:     127.0.0.1:43740 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:48116 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.82s tokens(prompt=1358, completion=36) | msg_count=3
+[iter 0] tool add_layer({'name': 'Geologia_ponto_Brasil', 'title': 'Geologia Pontos Brasil'}): 0.0002s
+[iter 1] LLM call: 1.84s tokens(prompt=1433, completion=30) | msg_count=5
+[DONE] total=4.66s iterations=2
+INFO:     127.0.0.1:48116 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:34320 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:39250 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.18s tokens(prompt=1358, completion=36) | msg_count=3
+[iter 0] tool add_layer({'name': 'Geologia_ponto_Brasil', 'title': 'Geologia Pontos Brasil'}): 0.0001s
+[iter 1] LLM call: 1.83s tokens(prompt=1433, completion=30) | msg_count=5
+[DONE] total=4.01s iterations=2
+INFO:     127.0.0.1:39250 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.55s tokens(prompt=1520, completion=40) | msg_count=7
+[iter 0] tool remove_layer({'name': 'Geologia_ponto_Brasil'}): 0.0000s
+[iter 1] LLM call: 3.57s tokens(prompt=1602, completion=59) | msg_count=9
+[iter 1] tool add_layer({'name': 'Geologia_ponto_Brasil', 'title': 'Geologia Pontos Brasil'}): 0.0001s
+[iter 2] LLM call: 2.86s tokens(prompt=1700, completion=47) | msg_count=11
+[DONE] total=8.99s iterations=3
+INFO:     127.0.0.1:55842 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.21s tokens(prompt=1807, completion=36) | msg_count=13
+[iter 0] tool add_layer({'name': 'Geologia_ponto_Brasil', 'title': 'Geologia Pontos Brasil'}): 0.0001s
+[iter 1] LLM call: 5.22s tokens(prompt=1882, completion=87) | msg_count=15
+[iter 1] tool remove_layer({'name': 'Geologia_ponto_Brasil'}): 0.0000s
+[iter 2] LLM call: 4.18s tokens(prompt=2011, completion=69) | msg_count=17
+[iter 2] tool add_layer({'name': 'Geologia_ponto_Brasil_Anexo', 'title': 'Geologia Pontos Brasil Anexo'}): 0.0001s
+[iter 3] LLM call: 2.17s tokens(prompt=2121, completion=35) | msg_count=19
+[DONE] total=13.78s iterations=4
+INFO:     127.0.0.1:35534 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:59226 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:47666 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.37s tokens(prompt=1354, completion=39) | msg_count=3
+[iter 0] tool add_layer({'name': 'IBGE_MG_Municipio', 'title': 'Municípios de Minas Gerais'}): 0.0001s
+[iter 1] LLM call: 1.31s tokens(prompt=1439, completion=21) | msg_count=5
+[DONE] total=3.68s iterations=2
+INFO:     127.0.0.1:47666 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.91s tokens(prompt=1525, completion=65) | msg_count=7
+[iter 0] tool remove_layer({'name': 'IBGE_MG_Municipio'}): 0.0000s
+[iter 0] tool add_layer({'name': 'IBGE_MG_UF', 'title': 'Limites Estatais de Minas Gerais'}): 0.0001s
+[iter 1] LLM call: 2.49s tokens(prompt=1666, completion=41) | msg_count=10
+[DONE] total=6.40s iterations=2
+INFO:     127.0.0.1:46302 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     127.0.0.1:38798 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:35462 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.28s tokens(prompt=1357, completion=20) | msg_count=3
+[iter 0] tool search_layers({'query': 'estado'}): 0.0016s
+[iter 1] LLM call: 2.83s tokens(prompt=1932, completion=46) | msg_count=5
+[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'title': 'Limites Estaduais'}): 0.0002s
+[iter 2] LLM call: 1.69s tokens(prompt=2017, completion=28) | msg_count=7
+[DONE] total=5.80s iterations=3
+INFO:     127.0.0.1:35462 - "POST /api/chat HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [71951]
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Started server process [74013]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [154338]
+INFO:     Finished server process [74013]
 WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
-INFO:     Started server process [154547]
+INFO:     Started server process [74250]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Shutting down
 INFO:     Waiting for application shutdown.
 INFO:     Application shutdown complete.
-INFO:     Finished server process [154547]
-INFO:     Started server process [154639]
+INFO:     Finished server process [74250]
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Started server process [74457]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
-WMS: loaded 9554 layers
-INFO:     127.0.0.1:40830 - "POST /api/session HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.82s tokens(prompt=1037, completion=100) | msg_count=3
-[iter 0] tool search_layers({'query': 'estados brasileiros'}): 0.0823s
-[iter 1] LLM call: 2.62s tokens(prompt=1513, completion=116) | msg_count=5
-[iter 1] tool search_layers({'query': 'unidades federativas'}): 0.1128s
-[iter 2] LLM call: 3.47s tokens(prompt=2096, completion=156) | msg_count=7
-[iter 2] tool add_layer({'name': 'CGEO:C02_unidades_da_federacao_2010', 'title': 'Unidades da federação 2010'}): 0.0003s
-[iter 3] LLM call: 3.19s tokens(prompt=2304, completion=145) | msg_count=9
-[DONE] total=12.29s iterations=4
-INFO:     127.0.0.1:40830 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.81s tokens(prompt=2215, completion=110) | msg_count=11
-[iter 0] tool get_layer_columns({'name': 'CGEO:C02_unidades_da_federacao_2010'}): 0.3342s
-[iter 1] LLM call: 7.38s tokens(prompt=2371, completion=341) | msg_count=13
-[iter 1] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UnidadeFed LIKE '%S%'"}): 0.0001s
-[iter 2] LLM call: 4.26s tokens(prompt=2744, completion=195) | msg_count=15
-[DONE] total=14.78s iterations=3
-INFO:     127.0.0.1:44850 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 12.06s tokens(prompt=2559, completion=557) | msg_count=17
-[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UPPER(UnidadeFed) LIKE '%S%'"}): 0.0001s
-[iter 1] LLM call: 5.43s tokens(prompt=3148, completion=246) | msg_count=19
-[DONE] total=17.49s iterations=2
-INFO:     127.0.0.1:51826 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.36s tokens(prompt=2954, completion=140) | msg_count=21
-[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UnidadeFed ILIKE '%S%'"}): 0.0000s
-[iter 1] LLM call: 3.96s tokens(prompt=3126, completion=177) | msg_count=23
-[DONE] total=7.32s iterations=2
-INFO:     127.0.0.1:56822 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 8.63s tokens(prompt=3240, completion=392) | msg_count=25
-[DONE] total=8.64s iterations=1
-INFO:     127.0.0.1:54280 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 9.46s tokens(prompt=3502, completion=434) | msg_count=27
-[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': "UnidadeFed = 'São Paulo'"}): 0.0000s
-[iter 1] LLM call: 5.79s tokens(prompt=3968, completion=262) | msg_count=29
-[DONE] total=15.25s iterations=2
-INFO:     127.0.0.1:56712 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.40s tokens(prompt=3874, completion=98) | msg_count=31
-[iter 0] tool apply_cql_filter({'name': 'CGEO:C02_unidades_da_federacao_2010', 'filter': '1=1'}): 0.0000s
-[iter 1] LLM call: 4.08s tokens(prompt=4004, completion=182) | msg_count=33
-[DONE] total=6.48s iterations=2
-INFO:     127.0.0.1:38644 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 2.55s tokens(prompt=4170, completion=108) | msg_count=35
-[iter 0] tool remove_layer({'name': 'CGEO:C02_unidades_da_federacao_2010'}): 0.0000s
-[iter 1] LLM call: 4.97s tokens(prompt=4326, completion=226) | msg_count=37
-[DONE] total=7.52s iterations=2
-INFO:     127.0.0.1:38644 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 1.84s tokens(prompt=4499, completion=68) | msg_count=39
-[iter 0] tool search_layers({'query': 'rodovias'}): 0.0006s
-[iter 1] LLM call: 2.59s tokens(prompt=4792, completion=108) | msg_count=41
-[iter 1] tool get_layer_columns({'name': 'CGEO:AP_T_Rodovias_Brasil'}): 0.4927s
-[iter 2] LLM call: 1.34s tokens(prompt=4944, completion=54) | msg_count=43
-[iter 2] tool get_layer_columns({'name': 'CGEO:Rodovias'}): 0.4174s
-[iter 3] LLM call: 1.42s tokens(prompt=5046, completion=56) | msg_count=45
-[iter 3] tool get_layer_columns({'name': 'CGEO:C02_rodovias_ferrovias'}): 0.2210s
-[iter 4] LLM call: 1.68s tokens(prompt=5140, completion=68) | msg_count=47
-[iter 4] tool get_layer_columns({'name': 'CGEO:ANMS2010_09_rodovias_e_ferrovias_2006'}): 0.4402s
-[iter 5] LLM call: 1.26s tokens(prompt=5258, completion=47) | msg_count=49
-[iter 5] tool get_layer_columns({'name': 'CGEO:Rodovia'}): 0.1971s
-[iter 6] LLM call: 1.63s tokens(prompt=5352, completion=68) | msg_count=51
-[iter 6] tool get_layer_columns({'name': 'CGEMAT:pbqg22_00_Bc250_2021TrechoRod_complex'}): 0.1980s
-[iter 7] LLM call: 1.30s tokens(prompt=5459, completion=52) | msg_count=53
-[iter 7] tool get_layer_columns({'name': 'CCAR:Rodovias com escala'}): 0.3295s
-[iter 8] LLM call: 1.82s tokens(prompt=5553, completion=74) | msg_count=55
-[iter 8] tool search_layers({'query': 'UF rodovia'}): 0.0511s
-[iter 9] LLM call: 1.89s tokens(prompt=5964, completion=73) | msg_count=57
-[iter 9] tool get_layer_columns({'name': 'CGEO:C04_RodoviaPavimentada'}): 0.3928s
-[MAX_ITER] total=19.51s
-INFO:     127.0.0.1:39490 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 1.81s tokens(prompt=5785, completion=59) | msg_count=60
-[iter 0] tool search_layers({'query': 'satélite'}): 0.0442s
-[iter 1] LLM call: 1.37s tokens(prompt=6027, completion=55) | msg_count=62
-[iter 1] tool search_layers({'query': 'imagens'}): 0.0011s
-[iter 2] LLM call: 1.85s tokens(prompt=6764, completion=68) | msg_count=64
-[iter 2] tool search_layers({'query': 'ortofoto'}): 0.0428s
-[iter 3] LLM call: 1.75s tokens(prompt=6848, completion=70) | msg_count=66
-[iter 3] tool search_layers({'query': 'aerial'}): 0.0419s
-[iter 4] LLM call: 1.56s tokens(prompt=7194, completion=62) | msg_count=68
-[iter 4] tool search_layers({'query': 'fotod'}): 0.0406s
-[iter 5] LLM call: 1.12s tokens(prompt=7272, completion=41) | msg_count=70
-[iter 5] tool list_layers({}): 0.0002s
-[iter 6] LLM call: 8.42s tokens(prompt=8437, completion=365) | msg_count=72
-[DONE] total=18.06s iterations=7
-INFO:     127.0.0.1:47010 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.57s tokens(prompt=8570, completion=166) | msg_count=74
-[iter 0] tool add_layer({'name': 'CGED:V_REF_20210930_PLANSAT', 'title': 'Estações Planialtimétricas Satélite - Ref 30SET2021'}): 0.0002s
-[iter 1] LLM call: 6.60s tokens(prompt=8806, completion=294) | msg_count=76
-[DONE] total=11.17s iterations=2
-INFO:     127.0.0.1:51968 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 13.31s tokens(prompt=9066, completion=599) | msg_count=78
-[DONE] total=13.31s iterations=1
-INFO:     127.0.0.1:57492 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 4.53s tokens(prompt=9581, completion=192) | msg_count=80
-[iter 0] tool get_layer_info({'name': 'CGED:V_REF_20210930_PLANSAT'}): 0.0002s
-[iter 1] LLM call: 2.12s tokens(prompt=9992, completion=85) | msg_count=82
-[iter 1] tool get_layer_columns({'name': 'CGED:V_REF_20210930_PLANSAT'}): 0.2534s
-[iter 2] LLM call: 13.15s tokens(prompt=10158, completion=598) | msg_count=84
-[DONE] total=20.06s iterations=3
-INFO:     127.0.0.1:57102 - "POST /api/chat HTTP/1.1" 200 OK
-[iter 0] LLM call: 3.92s tokens(prompt=10503, completion=158) | msg_count=86
-[iter 0] tool apply_cql_filter({'name': 'CGED:V_REF_20210930_PLANSAT', 'filter': "UF = 'SE'"}): 0.0001s
-[iter 1] LLM call: 7.94s tokens(prompt=10693, completion=355) | msg_count=88
-[DONE] total=11.85s iterations=2
-INFO:     127.0.0.1:60298 - "POST /api/chat HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [74457]
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Started server process [74586]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [74586]
+INFO:     Started server process [74790]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WMS: loaded 9562 layers
+INFO:     127.0.0.1:36604 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:37544 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.84s tokens(prompt=1348, completion=20) | msg_count=3
+[iter 0] tool search_layers({'query': 'estado'}): 0.0016s
+[iter 1] LLM call: 2.58s tokens(prompt=1923, completion=42) | msg_count=5
+[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'title': 'Estado'}): 0.0003s
+[iter 2] LLM call: 2.08s tokens(prompt=2000, completion=35) | msg_count=7
+[DONE] total=6.50s iterations=3
+INFO:     127.0.0.1:37544 - "POST /api/chat HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [74790]
+INFO:     Started server process [75562]
+INFO:     Waiting for application startup.
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75562]
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Started server process [75801]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75801]
+INFO:     Started server process [75946]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+WMS: loaded 9562 layers
+INFO:     127.0.0.1:46116 - "GET / HTTP/1.1" 304 Not Modified
+INFO:     127.0.0.1:42012 - "POST /api/session HTTP/1.1" 200 OK
+[iter 0] LLM call: 1.84s tokens(prompt=1351, completion=20) | msg_count=3
+[iter 0] tool search_layers({'query': 'estado'}): 0.0016s
+[iter 1] LLM call: 2.59s tokens(prompt=1926, completion=42) | msg_count=5
+[iter 1] tool add_layer({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'title': 'Estado'}): 0.0003s
+[iter 2] LLM call: 3.06s tokens(prompt=2003, completion=52) | msg_count=7
+[DONE] total=7.50s iterations=3
+INFO:     127.0.0.1:42012 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.27s tokens(prompt=2131, completion=37) | msg_count=9
+[iter 0] tool get_layer_columns({'name': 'CGMAT:pbqg22_02_Estado_NomUF'}): 0.3605s
+[iter 1] LLM call: 3.09s tokens(prompt=2227, completion=52) | msg_count=11
+[iter 1] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': 'cd_uf > 3555'}): 0.0000s
+[iter 2] LLM call: 5.12s tokens(prompt=2314, completion=87) | msg_count=13
+[DONE] total=10.85s iterations=3
+INFO:     127.0.0.1:60946 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.77s tokens(prompt=2458, completion=46) | msg_count=15
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': '1=1'}): 0.0000s
+[iter 1] LLM call: 4.69s tokens(prompt=2539, completion=79) | msg_count=17
+[DONE] total=7.45s iterations=2
+INFO:     127.0.0.1:60946 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.05s tokens(prompt=2685, completion=50) | msg_count=19
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': 'cd_uf <= 35'}): 0.0000s
+[iter 1] LLM call: 5.18s tokens(prompt=2770, completion=87) | msg_count=21
+[DONE] total=8.23s iterations=2
+INFO:     127.0.0.1:48394 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.12s tokens(prompt=2927, completion=51) | msg_count=23
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': "nm_uf ILIKE '%s%'"}): 0.0000s
+[iter 1] LLM call: 5.29s tokens(prompt=3013, completion=89) | msg_count=25
+[DONE] total=8.41s iterations=2
+INFO:     127.0.0.1:48900 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.59s tokens(prompt=3180, completion=59) | msg_count=27
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': "nm_uf ILIKE '%s%' AND cd_uf < 35"}): 0.0000s
+[iter 1] LLM call: 5.74s tokens(prompt=3274, completion=97) | msg_count=29
+[DONE] total=9.33s iterations=2
+INFO:     127.0.0.1:60498 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 2.83s tokens(prompt=3430, completion=46) | msg_count=31
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': '1=1'}): 0.0000s
+[iter 1] LLM call: 4.72s tokens(prompt=3511, completion=79) | msg_count=33
+[DONE] total=7.55s iterations=2
+INFO:     127.0.0.1:52926 - "POST /api/chat HTTP/1.1" 200 OK
+[iter 0] LLM call: 3.25s tokens(prompt=3666, completion=53) | msg_count=35
+[iter 0] tool apply_cql_filter({'name': 'CGMAT:pbqg22_02_Estado_NomUF', 'filter': "nm_uf NOT ILIKE '%a%'"}): 0.0000s
+[iter 1] LLM call: 6.80s tokens(prompt=3753, completion=115) | msg_count=37
+[DONE] total=10.05s iterations=2
+INFO:     127.0.0.1:54544 - "POST /api/chat HTTP/1.1" 200 OK
+WARNING:  WatchFiles detected changes in 'agent.py'. Reloading...
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [75946]
+INFO:     Started server process [78521]
+INFO:     Waiting for application startup.
