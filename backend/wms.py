@@ -167,6 +167,7 @@ def get_layer_info(name: str) -> dict | None:
         "title": row[1],
         "abstract": row[2],
         "bbox": json.loads(row[3]) if row[3] else None,
+        "url": WMS_URL,
     }
 
 #WFS TESTE
