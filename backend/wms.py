@@ -1,5 +1,6 @@
 import sqlite3
 import json
+import urllib.parse
 
 import httpx
 import xml.etree.ElementTree as ET
@@ -196,3 +197,47 @@ def get_layer_columns(layer_name: str) -> list[str]:
         print(f"Erro ao buscar colunas da camada {layer_name}: {e}")
         return []
     
+def get_feature_bbox(layer_name: str, cql_filter: str) -> list[float] | None:
+    encoded_filter = urllib.parse.quote(cql_filter)
+
+    url = f"{WFS_URL}?service=WFS&version=1.0.0&request=GetFeature&typeName={layer_name}&CQL_FILTER={encoded_filter}&outputFormat=application/json"
+
+    try:
+        with httpx.Client(timeout=10) as client:
+            resp = client.get(url)
+            resp.raise_for_status()
+            data = resp.json()
+
+            if not data.get("features"):
+                return None
+            
+            if "bbox" in data:
+                return data["bbox"]
+            
+            coords = []
+            def extract_coords(geom_data):
+                if isinstance(geom_data, list):
+                    if len(geom_data) >= 2 and isinstance(geom_data[0], (int, float)):
+                        coords.append(geom_data)
+                    else:
+                        for item in geom_data:
+                            extract_coords(item)
+                
+            for feature in data["features"]:
+                geom = feature.get("geometry")
+                if geom and "coordinates" in geom:
+                    extract_coords(geom["coordinates"])
+            
+            if coords:
+                min_x = min(c[0] for c in coords)
+                min_y = min(c[1] for c in coords)
+                max_x = max(c[0] for c in coords)
+                max_y = max(c[1] for c in coords)
+                return [min_x, min_y, max_x, max_y]
+    
+    except Exception as e:
+        print(f"Erro ao buscar bbox da feição de {layer_name} com filtro {cql_filter}")
+    
+    return None
+
+                

@@ -5,7 +5,13 @@ import os
 import time
 import uuid
 from openai import AsyncOpenAI
-from wms import get_all_layers, search_layers, get_layer_info, get_layer_columns
+from wms import(
+    get_all_layers,
+    search_layers,
+    get_layer_info,
+    get_layer_columns,
+    get_feature_bbox
+)
 
 logger = logging.getLogger("agent")
 
@@ -40,11 +46,9 @@ REALIZAR REMOÇÃO DE FILTROS: Filtre a camada por 1=1.
 # DIRETRIZES CRÍTICAS:
 - PROATIVIDADE: Execute as ferramentas. NÃO peça permissão para buscar ou listar colunas.
 - ERRO DE COLUNA: NUNCA INVENTE NOMES de colunas. Use SEMPRE `get_layer_columns` antes de qualquer filtro CQL.
-- RESPOSTA: Entregue o resultado geográfico, fale o nome da coluna adicionada, se tiver adicionado alguma e LISTE OS ATRIBUTOS DA COLUNA ADICIONADA.
-
-# REGRAS DE FILTRAGEM:
-- NÃO INVENTE O NOME DAS CAMADAS, UTILIZE SEMPRE O get_layer_columns.
-- A estrutura para filtragem será por padrão nome_da_coluna OPERAÇÃO_EM_CAIXA_ALTA parametro Ex: nm_mun ILIKE '%s%' 
+- RESPOSTA: Entregue o resultado geográfico, SEMPRE LISTE o nome da coluna adicionada, se tiver adicionado alguma e LISTE TODOS OS ATRIBUTOS DA COLUNA ADICIONADA.
+- AO FILTRAR SEMPRE COLOQUE O NOME DA COLUNA COM TODAS AS LETRAS MINÚSCULAS.
+- A estrutura para filtragem será por padrão nome_da_coluna_MINÚSCULA OPERAÇÃO_EM_CAIXA_ALTA parametro Ex: nm_mun ILIKE '%s%'.
 - Se o usuário pedir para filtrar por um data type string ou str SEMPRE UTILIZE ILIKE e o operador % antes e depois da palavra. 
 """
 
@@ -132,13 +136,17 @@ TOOLS = [
         "type": "function",
         "function": {
             "name": "zoom_to_layer",
-            "description": "Ajusta o zoom do mapa para a extensão geográfica de uma camada.",
+            "description": "Ajusta o zoom do mapa para a extensão geográfica de uma camada ou em uma feição específica.",
             "parameters": {
                 "type": "object",
                 "properties": {
                     "name": {
                         "type": "string",
                         "description": "Nome técnico da camada WMS",
+                    },
+                    "filter": {
+                        "type": "string",
+                        "description": "Opcional. Expressão CQL para focar em uma feição específica. Ex: nm_mun ILIKE '%Minas Gerais%'"
                     },
                 },
                 "required": ["name"],
@@ -250,13 +258,28 @@ def _tool_remove_layer(args: dict) -> tuple[str, dict | None]:
 
 def _tool_zoom_to_layer(args: dict) -> tuple[str, dict | None]:
     layer_name = args.get("name", "")
-    info = get_layer_info(layer_name)
+    cql_filter = args.get("filter")
+
+    if cql_filter:
+        bbox = get_feature_bbox(layer_name, cql_filter)
+        if bbox:
+            action = {"type": "zoom_to_layer", "name": layer_name, "bbox": bbox, "filter": cql_filter}
+            return json.dumps(
+                {"status": "ok", "message": f"Zoom ajustado para a feição filtrada em {layer_name}"}
+            ), action
+        else:
+            return json.dumps({"error": "Não foi possível encontrar as coordenadas para o filtro fornecido"}), None
+
+    info =get_layer_info(layer_name)
     if info and info.get("bbox"):
-        action = {"type": "zoom_to_layer", "name": layer_name, "bbox": info["bbox"]}
         return json.dumps(
-            {"status": "ok", "message": f"Zoom ajustado para {layer_name}"}
+            {"status": "ok", "message": f"Zoom ajustado para a camada inteira {layer_name}"}
         ), action
+    
     return json.dumps({"error": "Camada não encontrada ou sem bbox"}), None
+    
+
+
 
 #tentativa fitro CQL
 def _tool_get_layer_columns(args: dict) -> tuple[str, dict | None]:
